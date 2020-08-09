@@ -624,10 +624,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: a4377134-5ef0-465b-b8ed-f19f5db9dc49
+  cloudProjectId: debb6b73-380d-45f3-b71c-264fe4adf08a
   framebufferDepthMemorylessMode: 0
   projectName: One Week 2D
-  organizationId: asihdt02
+  organizationId: oneweekpiroject
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
