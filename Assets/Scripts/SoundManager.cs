@@ -33,10 +33,10 @@ public class  SoundManager : Singleton<SoundManager>
     private void LoadSoundResource()
     {
         //記入例
-        SoundSEData_.LoadSoundData("","");
+        SoundSEData_.LoadSoundData("Sound/SE/KomoriSE/anime01/anime01/anime_flying", "SE1");
         //\記入例
 
-        SoundBGMData_.LoadSoundData("", "");
+        SoundBGMData_.LoadSoundData("Sound/BGM/ReoMusic/スペースコロニー", "BGM1");
 
     }
     
@@ -49,7 +49,7 @@ public class  SoundManager : Singleton<SoundManager>
 
         if (SoundData == null)
         {
-            Debug.LogError(KeyName + "キーネームは設定されていません(SE)");
+            Debug.LogError(SoundData);
             return;
         }
 
@@ -75,29 +75,24 @@ public class  SoundManager : Singleton<SoundManager>
     }
     
     //BGMを流す
-    public void BGMPlay()
+    public void Play()
     {
         MyBGMAudioSource.Play();
     }
     //BGMを止める
-    public void BGMStop()
+    public void Stop()
     {
         MyBGMAudioSource.Stop();
     }
     //BGMをポーズ
-    public void BGMPause()
+    public void Pause()
     {
         MyBGMAudioSource.Pause();
     }
     //BGMをポーズ解除
-    public void BGMUnPause()
+    public void UnPause()
     {
         MyBGMAudioSource.UnPause();
-    }
-    //SEのプレイ
-    public void SEPlayer()
-    {
-        MySEAudioSource.Play();
     }
     //SEの止める
     public void SEStop()

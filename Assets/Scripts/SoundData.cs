@@ -34,7 +34,17 @@ public class SoundData
                 return;
             }
         }
-        var SoundAudio = Resources.Load<AudioClip>(FilePass);
+        var SoundAudio = Resources.Load<AudioClip>(FilePass) as AudioClip;
+
+        if(SoundAudio == null)
+        {
+            Debug.LogError(FilePass + "NULLError");
+        }
+
+        SoundData_.Add(KeyName, SoundAudio);
+
+        Debug.Log("作成しました。("+KeyName+")");
+
     }
     //Soundデータの取得
     public AudioClip GetSoundData(string KeyName)
@@ -43,10 +53,11 @@ public class SoundData
         {
             if(SoundKeyItem.Key == KeyName)
             {
+                Debug.Log("見つけた");
                 return SoundKeyItem.Value;
             }
         }
-
+        Debug.Log("中身ない");
         return null;
     }
 }
