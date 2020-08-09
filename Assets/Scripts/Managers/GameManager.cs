@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     //タイマー用変数 制限時間
-    private float limitTime = 60;
+    private readonly float limitTime = 60;
+    private float timeDelta = 0;
 
     public enum State
     {
@@ -30,10 +31,19 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //ゲーム開始
-        SetState(State.Game);
+        //初期化
+        InitializeGame();
     }
 
+     //初期化処理
+    public void InitializeGame()
+    {
+        SetState(State.Game);
+        ResultUI.instance.ShowResultPanel(false);
+        //制限時間初期化
+        timeDelta = limitTime;
+        GameUI.instance.ShowTimer(true);
+    }
 
     private void Update()
     {
@@ -70,18 +80,18 @@ public class GameManager : MonoBehaviour
 
     private void TimerUpdate()
     {
-        limitTime -= Time.deltaTime;
+        timeDelta -= Time.deltaTime;
         if (GameUI.instance != null)
         {
-            GameUI.instance.TimerUpdate(limitTime);
+            GameUI.instance.TimerUpdate(timeDelta);
         }
 
-        if(limitTime <= 0)
+        if(timeDelta <= 0)
         {
-            limitTime = 0;
+            timeDelta = 0;
             GameUI.instance.TimerUpdate(limitTime);
             //リザルトへ
-            SetState(State.Result);
+            ShowResult();
         }
     }
 
@@ -90,7 +100,7 @@ public class GameManager : MonoBehaviour
     //リザルト表示
     private void ShowResult()
     {
-
+        SetState(State.Result);
     }
 
     public void SetState(State s)

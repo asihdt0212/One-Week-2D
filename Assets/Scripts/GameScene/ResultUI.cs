@@ -53,18 +53,24 @@ public class ResultUI : MonoBehaviour
     private IEnumerator Retry()
     {
         yield return null;
+
+        GameManager.instance.InitializeGame();
     }
 
     //タイトルボタン
     private IEnumerator Title()
     {
         yield return null;
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
     }
 
     //ランキングボタン
     private IEnumerator Ranking()
     {
         yield return null;
+
+        RankingUI.instance.ShowRankingPanel(true);
     }
 
 
@@ -72,5 +78,10 @@ public class ResultUI : MonoBehaviour
     public void ShowResultPanel(bool show)
     {
         resultPanel.SetActive(show);
+        if (show == true) 
+        {
+            //タイマー非表示
+            GameUI.instance.ShowTimer(false);
+        }
     }
 }

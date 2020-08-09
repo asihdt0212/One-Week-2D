@@ -30,10 +30,16 @@ public class GameUI : MonoBehaviour
         timerLabel = Find(HierarchyPath_Game.GameUICanvas.TimerLabel).GetComponent<Text>();
     }
 
-
+    //タイマー表記更新
     public void TimerUpdate(float value)
     {
         timerLabel.text = Mathf.Round(value).ToString();
+    }
+
+    //タイマー表示切替
+    public void ShowTimer(bool show)
+    {
+        timerLabel.gameObject.SetActive(show);
     }
 
 }

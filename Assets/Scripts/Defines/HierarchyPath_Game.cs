@@ -43,5 +43,7 @@
 		public const string RankingPanelScrollViewScrollbarVertical = "RankingUICanvas/RankingPanel/Scroll View/Scrollbar Vertical";
 		public const string RankingPanelScrollViewScrollbarVerticalSlidingArea = "RankingUICanvas/RankingPanel/Scroll View/Scrollbar Vertical/Sliding Area";
 		public const string RankingPanelScrollViewScrollbarVerticalSlidingAreaHandle = "RankingUICanvas/RankingPanel/Scroll View/Scrollbar Vertical/Sliding Area/Handle";
+		public const string RankingPanelCloseRankingButton = "RankingUICanvas/RankingPanel/CloseRankingButton";
+		public const string RankingPanelCloseRankingButtonText = "RankingUICanvas/RankingPanel/CloseRankingButton/Text";
 	}
 }
