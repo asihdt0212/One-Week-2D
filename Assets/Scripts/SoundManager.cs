@@ -49,11 +49,11 @@ public class  SoundManager : Singleton<SoundManager>
 
         if (SoundData == null)
         {
-            Debug.LogError(SoundData);
+            Debug.LogError(KeyName+"の中身が"+SoundData+"です。（BGM）");
             return;
         }
 
-
+        //ワンショットでならす
         MySEAudioSource.PlayOneShot(SoundData);
     }
     //BGMを流す
@@ -65,12 +65,12 @@ public class  SoundManager : Singleton<SoundManager>
 
         if(SoundData == null)
         {
-            Debug.LogError(KeyName+"キーネームは設定されていません(BGM");
+            Debug.LogError(KeyName + "の中身が" + SoundData + "です。（SE）");
             return;
         }
-
+        //設定BGMの変更
         MyBGMAudioSource.clip = SoundData;
-
+        //BGMを流す
         MyBGMAudioSource.Play();
     }
     
