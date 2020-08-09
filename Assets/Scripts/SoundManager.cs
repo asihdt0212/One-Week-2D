@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class  SoundManager : Singleton<SoundManager>
 {
-    [SerializeField]
+    
     AudioSource MyBGMAudioSource;
     AudioSource MySEAudioSource;
     //音楽データ作成用
@@ -18,6 +18,10 @@ public class  SoundManager : Singleton<SoundManager>
         //初期化
         SoundSEData_ = new SoundData();
         SoundBGMData_ = new SoundData();
+
+        //オーディオソースを追加;
+        MyBGMAudioSource = this.gameObject.AddComponent<AudioSource>();
+        MySEAudioSource = this.gameObject.AddComponent<AudioSource>();
         //Soundのロード
         LoadSoundResource();
 
@@ -80,6 +84,16 @@ public class  SoundManager : Singleton<SoundManager>
     {
         MyBGMAudioSource.Stop();
     }
+    //BGMをポーズ
+    public void BGMPause()
+    {
+        MyBGMAudioSource.Pause();
+    }
+    //BGMをポーズ解除
+    public void BGMUnPause()
+    {
+        MyBGMAudioSource.UnPause();
+    }
     //SEのプレイ
     public void SEPlayer()
     {
@@ -90,9 +104,22 @@ public class  SoundManager : Singleton<SoundManager>
     {
         MySEAudioSource.Stop();
     }
-    public void BGMVolumeChange()
+    //BGMのボリューム変更// 0～１
+    public void BGMVolumeChange(float value)
     {
-
+        //0～1超えないようにする。
+        float value_ = Mathf.Clamp(value, 0, 1);
+        //ボリューム設定
+        MyBGMAudioSource.volume = value_;
     }
+    //SEのボリューム変更// 0～1
+    public void SEVolumeChange(float value)
+    {
+        //0～1超えないようにする。
+        float value_ = Mathf.Clamp(value, 0, 1);
+        //ボリューム設定
+        MySEAudioSource.volume = value_;
+    }
+    
 
 }
