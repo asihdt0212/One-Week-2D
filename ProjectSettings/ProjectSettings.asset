@@ -610,11 +610,8 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 0
     Collab: 0
-    ErrorHub: 0
-    Hub: 0
-    UNet: 0
+    UNet: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -627,10 +624,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: debb6b73-380d-45f3-b71c-264fe4adf08a
+  cloudProjectId: a4377134-5ef0-465b-b8ed-f19f5db9dc49
   framebufferDepthMemorylessMode: 0
   projectName: One Week 2D
-  organizationId: oneweekpiroject
+  organizationId: asihdt02
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

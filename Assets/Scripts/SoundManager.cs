@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : Singleton<SoundManager>
+public class  SoundManager : Singleton<SoundManager>
 {
     [SerializeField]
-    AudioSource MyAudioSource;
+    AudioSource MyBGMAudioSource;
+    AudioSource MySEAudioSource;
     //音楽データ作成用
     SoundData SoundSEData_;
     SoundData SoundBGMData_;
@@ -49,12 +50,12 @@ public class SoundManager : Singleton<SoundManager>
         }
 
 
-        MyAudioSource.PlayOneShot(SoundData);
+        MySEAudioSource.PlayOneShot(SoundData);
     }
     //BGMを流す
     public void SoundBGMPlay(string KeyName)
     {
-        MyAudioSource.Stop();
+        MyBGMAudioSource.Stop();
 
         var SoundData = SoundBGMData_.GetSoundData(KeyName);
 
@@ -64,20 +65,34 @@ public class SoundManager : Singleton<SoundManager>
             return;
         }
 
-        MyAudioSource.clip = SoundData;
+        MyBGMAudioSource.clip = SoundData;
 
-        MyAudioSource.Play();
+        MyBGMAudioSource.Play();
     }
-
-    //音楽を流す
-    public void SoundPlay()
+    
+    //BGMを流す
+    public void BGMPlay()
     {
-        MyAudioSource.Play();
+        MyBGMAudioSource.Play();
+    }
+    //BGMを止める
+    public void BGMStop()
+    {
+        MyBGMAudioSource.Stop();
+    }
+    //SEのプレイ
+    public void SEPlayer()
+    {
+        MySEAudioSource.Play();
+    }
+    //SEの止める
+    public void SEStop()
+    {
+        MySEAudioSource.Stop();
+    }
+    public void BGMVolumeChange()
+    {
+
     }
 
-    //音楽を止める
-    public void SoundStop()
-    {
-        MyAudioSource.Stop();
-    }
 }
