@@ -9,6 +9,8 @@ public class CharactorManager : MonoBehaviour
     public Pattern[] Patterns;
     //Patternリスト
     List<Pattern> ListPattern;
+    //人間データの格納先
+    List<Charactor> ListCharactor;
 
     //ゲーム難易度
     public enum DifficultyLevel
@@ -18,8 +20,9 @@ public class CharactorManager : MonoBehaviour
         Level3,
         Level4,
         Level5,
-        
     }
+    [Header("画面上に出現出来る人間の数")]
+    public int MaxHumanValue = 1;
 
     DifficultyLevel DifficultyLevel_ = DifficultyLevel.Level1;
 
@@ -27,10 +30,13 @@ public class CharactorManager : MonoBehaviour
     void Start()
     {
 
-        //動きの仮実装
+        ////動きの仮実装
+        //リスト初期化
         ListPattern = new List<Pattern>();
-        //Patternと動くオブジェクトを設定
-        var M_Pattern = new MovePattern();
+        ListCharactor = new List<Charactor>();
+
+       //Patternと動くオブジェクトを設定
+       var M_Pattern = new MovePattern();
         M_Pattern.Mytransform = gameObjects[0].transform;
         //リストへ追加
         ListPattern.Add(M_Pattern);
@@ -45,6 +51,16 @@ public class CharactorManager : MonoBehaviour
 
         ListPattern[1].Move();
 
+        //空のオブジェクト生成
+        var CharactorObj = new GameObject();
+        CharactorObj.name = "CharactorObj";
+
+        //SpriteRendererをアタッチ
+        CharactorObj.AddComponent<SpriteRenderer>();
+        //Charactorをアタッチ＋初期化
+        CharactorObj.AddComponent<Charactor>().Init();
+        //Charactor Scriptをもらう
+        ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
 
     }
 
