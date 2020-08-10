@@ -52,9 +52,9 @@ public class CharactorManager : MonoBehaviour
 
             //Patternと動くオブジェクトを設定
             var M_Pattern = new MovePattern();
-            //
+            //作ったオブジェクトのtransformの取得
             M_Pattern.Mytransform = CharactorObj.transform;
-
+            //移動方向の決定
             M_Pattern.PatternType_ = Pattern.Angle.LeftUp;
 
             //家データの設定
