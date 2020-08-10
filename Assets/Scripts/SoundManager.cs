@@ -34,10 +34,11 @@ public class  SoundManager : Singleton<SoundManager>
     {
         //記入例
         SoundSEData_.LoadSoundData("Sound/SE/KomoriSE/anime01/anime01/anime_flying", "SE1");
+        SoundSEData_.LoadSoundData(Define.Audio_1000hznoise, "SE2");
         //\記入例
 
         SoundBGMData_.LoadSoundData("Sound/BGM/ReoMusic/スペースコロニー", "BGM1");
-
+        SoundSEData_.LoadSoundData(Define.Audio_地下アジト, "BGM2");
     }
     
     /// </書き足す所>
