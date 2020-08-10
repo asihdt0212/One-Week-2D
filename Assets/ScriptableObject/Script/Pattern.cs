@@ -23,7 +23,7 @@ public abstract class Pattern : ScriptableObject
     [Range(1, 5)]
     public int People = 1;
 
-    //移動しきるか待機しきるか
+    //移動中、待機中
     public bool m_MoveFlag = false;
     //移動出現方向
     Angle PatternType_ = Angle.Up;
@@ -42,20 +42,27 @@ public static class PatternExtension
 [CreateAssetMenu(menuName = "Pattern/MovePattern")]
 public class MovePattern : Pattern
 {
-    public RectTransform rectTran;
+    public Transform Mytransform;
 
     public override void Move()
     {
+        Mytransform.DOMove(new Vector3(0, 10f, 0), 10.0f);
+
         Debug.Log("Move実行");
     }
 }
 [CreateAssetMenu(menuName = "Pattern/MovePattern2")]
 public class MovePattern2 : Pattern
 {
-    public RectTransform rectTran;
+
+    public Transform Mytransform;
+
+    public float FirstWaitTime; 
 
     public override void Move()
     {
+        Mytransform.DOMove(new Vector3(0, -10f,0 ), 10.0f);
+
         Debug.Log("Move2実行");
     }
 }
