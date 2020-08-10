@@ -11,7 +11,7 @@ public class CharactorManager : MonoBehaviour
     List<Pattern> ListPattern;
     //人間データの格納先
     List<Charactor> ListCharactor;
-
+    public GameObject TargetObj;
     //ゲーム難易度
     public enum DifficultyLevel
     {
@@ -34,40 +34,48 @@ public class CharactorManager : MonoBehaviour
         //リスト初期化
         ListPattern = new List<Pattern>();
         ListCharactor = new List<Charactor>();
+        
 
-       //Patternと動くオブジェクトを設定
-       var M_Pattern = new MovePattern();
-        M_Pattern.Mytransform = gameObjects[0].transform;
-        //リストへ追加
-        ListPattern.Add(M_Pattern);
+        for (int i = 0; i < MaxHumanValue;i++)
+        {
+            //空のオブジェクト生成
+            var CharactorObj = new GameObject();
+            CharactorObj.name = "CharactorObj";
 
-        ListPattern[0].Move();
+            //SpriteRendererをアタッチ
+            CharactorObj.AddComponent<SpriteRenderer>();
+            //Charactorをアタッチ＋初期化
+            CharactorObj.AddComponent<Charactor>().Init();
 
-        //Patternと動くオブジェクトを設定
-        var M_Pattern2 = new MovePattern2();
-        M_Pattern2.Mytransform = gameObjects[1].transform;
-        //リストへ追加
-        ListPattern.Add(M_Pattern2);
+            //Charactor Scriptをもらう
+            ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
 
-        ListPattern[1].Move();
+            //Patternと動くオブジェクトを設定
+            var M_Pattern = new MovePattern();
+            //
+            M_Pattern.Mytransform = CharactorObj.transform;
 
-        //空のオブジェクト生成
-        var CharactorObj = new GameObject();
-        CharactorObj.name = "CharactorObj";
+            M_Pattern.PatternType_ = Pattern.Angle.LeftUp;
 
-        //SpriteRendererをアタッチ
-        CharactorObj.AddComponent<SpriteRenderer>();
-        //Charactorをアタッチ＋初期化
-        CharactorObj.AddComponent<Charactor>().Init();
-        //Charactor Scriptをもらう
-        ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
+            //家データの設定
+            M_Pattern.TargetObject = TargetObj;
+            //移動方向の初期化
+            M_Pattern.MoveAngleInit();
+            //リストへ追加
+            ListPattern.Add(M_Pattern);
+
+            
+
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        ListPattern[0].Move();
-        ListPattern[1].Move();
+       foreach(var L_Pattern in ListPattern)
+        {
+            L_Pattern.Move();
+        }
     }
 }
