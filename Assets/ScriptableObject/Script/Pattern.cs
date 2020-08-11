@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 
+
 public abstract class Pattern : ScriptableObject
 {
     //キャラクター状態 
@@ -48,6 +49,7 @@ public abstract class Pattern : ScriptableObject
 
     //キャラクターの状態
     protected ActiveMove ActiveMove_ = ActiveMove.Wait;
+
     //キャラクターの状態を返す。
     public ActiveMove GetActiveMove()
     {
@@ -86,10 +88,7 @@ public class MovePattern : Pattern
     //移動前の初期化 //動かすオブジェクトの位置データ参照データを引数。
     public void MoveAngleInit(Transform transform)
     {
-        if(Mytransform == null)
-        {
-            Debug.Log("NNULLL");
-        }
+        
         //オブジェクトのTransform参照データの受け渡し。
         Mytransform = transform;
         //オブジェクト位置を変える
@@ -105,7 +104,7 @@ public class MovePattern : Pattern
             {
                 //移動ベクトルを入れる
                 MoveAngle_ = M_Angle.Value;
-                Debug.Log(PatternType_ +" "+M_Angle.Value);
+                //Debug.Log(PatternType_ +" "+M_Angle.Value);
             }
 
         }
@@ -115,7 +114,8 @@ public class MovePattern : Pattern
         {
             ////逆側の位置を求めに行く
             //逆方向は+-4した値
-            int Value = (int)PatternType_ + 4 ;
+            int Value = ((int)PatternType_ + 4 > MoveAngle.Count - 1) ? (int)PatternType_ + 4 - (MoveAngle.Count) : (int)PatternType_ + 4;
+            /*
             //Valueが超えた時は移動方向の種類分減らす
             if(Value > MoveAngle.Count - 1)
             {
@@ -124,9 +124,12 @@ public class MovePattern : Pattern
                 //超えた分
                 Value = Value - (MoveAngle.Count);
             }
-            Debug.Log("PatternType_" + PatternType_ + " "+ Value);
+            */
+            //Debug.Log("PatternType_" + PatternType_ + " "+ Value);
             //値の入れ物
             Vector3 FirstPosi = Vector3.zero;
+
+
             foreach (KeyValuePair<Angle, Vector3> M_Angle in MoveAngle)
             {
                 //同じキーがあるか検索
@@ -137,10 +140,12 @@ public class MovePattern : Pattern
                     Debug.Log(M_Angle.Key+ "発見" + FirstPosi);
                 }
             }
+          
+
             Debug.Log(FirstPosi);
             //オブジェクトの位置を変える
             Mytransform.position = TargetObject.transform.position + (FirstPosi* LenthValue);
-            Debug.Log(Mytransform.position);
+            //Debug.Log(Mytransform.position);
         }
         else
         {
@@ -156,8 +161,16 @@ public class MovePattern : Pattern
         m_MoveFlag = false;
     }
     //出るほうの処理を行います。　引数移動方向
-    public void OutStartInit(Angle angle)
+    public void OutStartInit(Angle angle,Home home_data)
     {
+        //
+        if (!home_data.GainHuman(People))
+        {
+            Debug.Log("キャラクター生成できませんでした。");
+            ActiveMove_ = ActiveMove.Wait;
+            return;
+        }
+        //
         PatternType_ = angle;
 
         m_MoveFlag = true;
@@ -169,13 +182,13 @@ public class MovePattern : Pattern
         if (!m_MoveFlag)
         {
             Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), 10.0f)
-                    .OnComplete(() => Debug.Log("completed"));
+                   .OnComplete(() => End());
         }
         //出る方の処理
         else
         {
             Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), 10.0f)
-                    .OnComplete(() => Debug.Log("completed"));
+                   .OnComplete(() => End());
         }
         Debug.Log("Move実行");
     }

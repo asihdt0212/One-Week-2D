@@ -8,12 +8,14 @@ public class CharactorManager : MonoBehaviour
     GameObject[] gameObjects;
     public Pattern[] Patterns;
     //Patternリスト
-    List<Pattern> ListPattern;
+    List<Pattern> ListPattern = new List<Pattern>();
     //人間データの格納先
-    List<Charactor> ListCharactor;
+    List<Charactor> ListCharactor = new List<Charactor>();
     public GameObject TargetObj;
 
-    List<GameObject> ListCharaObj;
+    protected Home Home_;
+
+    List<GameObject> ListCharaObj = new List<GameObject>();
     //ゲーム難易度
     public enum DifficultyLevel
     {
@@ -34,9 +36,11 @@ public class CharactorManager : MonoBehaviour
 
         ////動きの仮実装
         //リスト初期化
-        ListPattern = new List<Pattern>();
-        ListCharactor = new List<Charactor>();
-        ListCharaObj = new List<GameObject>();
+        ListPattern.Clear();
+        ListCharactor.Clear();
+        ListCharaObj.Clear();
+        //
+        Home_ = new Home();
 
         for (int i = 0; i < MaxHumanValue;i++)
         {
@@ -58,8 +62,9 @@ public class CharactorManager : MonoBehaviour
             var M_Pattern = new MovePattern();
 
             //移動方向の決定
-            M_Pattern.InStartInit(Pattern.Angle.Down);
-            
+            M_Pattern.OutStartInit(Pattern.Angle.Down,Home_);
+            //団体人数
+            M_Pattern.People = 5;
             //家データの設定
             M_Pattern.TargetObject = TargetObj;
             //移動方向の初期化
@@ -77,10 +82,18 @@ public class CharactorManager : MonoBehaviour
     {
         for (int i = 0; i < MaxHumanValue; i++)
         {
+            //移動アップデート
             ListPattern[i].Move();
-
+            //動いているオブジェクトが、Endになった時
             if(ListPattern[i].GetActiveMove() == Pattern.ActiveMove.End)
             {
+                //出現から移動の終了時 false、
+                if (!ListPattern[i].m_MoveFlag)
+                {
+                    Debug.Log("AddHuman");
+                    //人間の加算処理。
+                    Home_.AddHuman(ListPattern[i].People);
+                }
                 
             }
         }

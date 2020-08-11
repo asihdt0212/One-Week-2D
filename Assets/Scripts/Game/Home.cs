@@ -19,8 +19,21 @@ public class Home : MonoBehaviour
     //人間の追加
     public void AddHuman(int AddHumanValue)
     {
-
+        TotalHuman += AddHumanValue;
     }
+    //人間が減る//Trueは無事に人間の量が減らせました。
+    //false　は減らせなかった。
+    public bool GainHuman(int GainHumanValue)
+    {
+        //減らした値が０未満はfalse;
+        if ((TotalHuman - GainHumanValue) < 0)
+        {
+            return false;
+        }
+        TotalHuman -= GainHumanValue;
+        return true;
+    }
+    //人間の数の取得
     public int GetHumanValue()
     {
         return TotalHuman;

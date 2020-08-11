@@ -31,9 +31,6 @@ public class Charactor : MonoBehaviour
                 CharactorSprite.Add(LoadSprite[i]);
             }
             this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[0];
-
-            
-
         }
         else
         {
