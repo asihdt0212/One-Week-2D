@@ -68,7 +68,7 @@ public class CharactorManager : MonoBehaviour
             //移動方向の決定
             M_Pattern.InStartInit(Pattern.Angle.Down);
             //団体人数
-            M_Pattern.People = 5;
+            M_Pattern.People = 1;
             //家データの設定
             M_Pattern.TargetObject = TargetObj;
             //移動方向の初期化
