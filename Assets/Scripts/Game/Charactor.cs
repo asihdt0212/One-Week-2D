@@ -23,7 +23,7 @@ public class Charactor : MonoBehaviour
 
         if (LoadSprite != null)
         {
-            Debug.Log("308 読み込み完了");
+            //Debug.Log("308 読み込み完了");
             Debug.Log("画像数" + LoadSprite.Length);
             //画像の追加
             for(int i = 0;i < LoadSprite.Length; i++)

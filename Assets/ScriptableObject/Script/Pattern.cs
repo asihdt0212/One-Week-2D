@@ -157,7 +157,7 @@ public class MovePattern : Pattern
     //入る方向Left設定
     public void RondomHomeInInit()
     {
-        
+        Debug.Log("ランダムIN生成");
         //乱数でLeftかUpを決める
         float RandomValue = Random.Range(0f, 1f)*10;
 
@@ -184,6 +184,9 @@ public class MovePattern : Pattern
     //出るほうの処理を行います。　引数移動方向
     public void RondomHomeOutInit()
     {
+        Debug.Log("ランダムOUT生成");
+
+
         //生成できるかチェック。
         if (!CharactorManager.Instance.GetHome().GainHuman(Human))
         {
@@ -233,17 +236,17 @@ public class MovePattern : Pattern
         if (!m_MoveFlag)
         {
             Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), MoveTime)
-                .SetDelay(MyNumber)
+                .SetDelay(MyNumber*3)
                 .OnComplete(() => End());
         }
         //出る方の処理
         else
         {
             Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), MoveTime)
-                .SetDelay(MyNumber)
+                .SetDelay(MyNumber * 3)
                 .OnComplete(() => End());
         }
-        Debug.Log("Move実行");
+        //Debug.Log("Move実行");
     }
     
     //Pattern2 移動開始まで時間待つ
@@ -254,7 +257,7 @@ public class MovePattern : Pattern
             .SetDelay(1f)
             .OnComplete(() => End() );
 
-        Debug.Log("Move2実行");
+        //Debug.Log("Move2実行");
     }
     //終了処理
     public void End()
