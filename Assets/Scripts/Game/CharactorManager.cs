@@ -56,7 +56,8 @@ public class CharactorManager : MonoBehaviour
             M_Pattern.Mytransform = CharactorObj.transform;
             //移動方向の決定
             M_Pattern.PatternType_ = Pattern.Angle.LeftUp;
-
+            //家から出ていく方へ
+            M_Pattern.m_MoveFlag = true;
             //家データの設定
             M_Pattern.TargetObject = TargetObj;
             //移動方向の初期化

@@ -132,16 +132,25 @@ public class MovePattern : Pattern
             Mytransform.position = TargetObject.transform.position;
         }
     }
-    //入るほう
+    //Pattern１
     public override void Move()
     {
-        Mytransform.DOMove(new Vector3(TargetObject.transform.position.x ,TargetObject.transform.position.y, Mytransform.position.z), 10.0f)
+        //入るほうの処理
+        if (!m_MoveFlag)
+        {
+            Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), 10.0f)
                     .OnComplete(() => Debug.Log("completed"));
-
+        }
+        //出る方の処理
+        else
+        {
+            Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), 10.0f)
+                    .OnComplete(() => Debug.Log("completed"));
+        }
         Debug.Log("Move実行");
     }
     
-    //出る方
+    //Pattern2 待機時間 移動　
     public override void Move2()
     {
 
