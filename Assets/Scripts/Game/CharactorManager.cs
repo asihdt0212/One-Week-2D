@@ -14,12 +14,13 @@ public class CharactorManager : Singleton<CharactorManager>
     List<Charactor> ListCharactor = new List<Charactor>();
     public GameObject TargetObj;
 
-    public Home Home_;
+    private Home Home_;
 
     
     List<GameObject> ListCharaObj = new List<GameObject>();
 
-    protected SelectMode SelectMode_; 
+    protected SelectMode SelectMode_;
+
 
     // Start is called before the first frame update
     void Start()
@@ -107,5 +108,11 @@ public class CharactorManager : Singleton<CharactorManager>
         {
             Debug.Log(Home_.GetHumanValue());
         }
+    }
+
+
+    public Home GetHome()
+    {
+        return Home_;
     }
 }
