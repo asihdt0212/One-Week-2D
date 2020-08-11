@@ -76,24 +76,8 @@ public class CharactorManager : MonoBehaviour
     {
        foreach(var L_Pattern in ListPattern)
         {
-            switch (L_Pattern.GetActiveMove())
-            {
-                case Pattern.ActiveMove.Wait:
-                    break;
-                case Pattern.ActiveMove.Move:
+            L_Pattern.Move();
 
-                    L_Pattern.Move2();
-
-                    break;
-                case Pattern.ActiveMove.End:
-
-                    L_Pattern.Move2();
-
-                    break;
-                default:
-                    break;
-            }
-            
         }
     }
 }
