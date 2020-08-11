@@ -83,7 +83,7 @@ public class GameUI : MonoBehaviour
         }
 
         //答えチェック関数を呼び出す
-        //******************************
+        GameManager.instance.CheckAnswer(num);
     }
 
 }
