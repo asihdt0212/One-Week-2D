@@ -48,6 +48,8 @@ public class CharactorManager : MonoBehaviour
             CharactorObj.AddComponent<SpriteRenderer>();
             //Charactorをアタッチ＋初期化
             CharactorObj.AddComponent<Charactor>().Init();
+            //オブジェクトの格納
+            ListCharaObj.Add(CharactorObj);
 
             //Charactor Scriptをもらう
             ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
@@ -56,9 +58,8 @@ public class CharactorManager : MonoBehaviour
             var M_Pattern = new MovePattern();
 
             //移動方向の決定
-            M_Pattern.InStartInit(Pattern.Angle.Up);
-            //移動方向の決定
-            M_Pattern.OutStartInit(Pattern.Angle.Up);
+            M_Pattern.InStartInit(Pattern.Angle.Down);
+            
             //家データの設定
             M_Pattern.TargetObject = TargetObj;
             //移動方向の初期化
@@ -74,10 +75,14 @@ public class CharactorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       foreach(var L_Pattern in ListPattern)
+        for (int i = 0; i < MaxHumanValue; i++)
         {
-            L_Pattern.Move();
-   
+            ListPattern[i].Move();
+
+            if(ListPattern[i].GetActiveMove() == Pattern.ActiveMove.End)
+            {
+                
+            }
         }
     }
 }

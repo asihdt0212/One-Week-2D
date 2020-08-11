@@ -151,12 +151,16 @@ public class MovePattern : Pattern
     //入るほうの処理を行います。 引数移動方向
     public void InStartInit(Angle angle)
     {
-        
+        PatternType_ = angle;
+
+        m_MoveFlag = false;
     }
     //出るほうの処理を行います。　引数移動方向
     public void OutStartInit(Angle angle)
     {
+        PatternType_ = angle;
 
+        m_MoveFlag = true;
     }
     //Pattern１
     public override void Move()
