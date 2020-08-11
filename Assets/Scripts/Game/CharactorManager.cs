@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharactorManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class CharactorManager : MonoBehaviour
     public GameObject TargetObj;
 
     protected Home Home_;
+
+    [SerializeField]
+    Text HoemHpText;
 
     List<GameObject> ListCharaObj = new List<GameObject>();
     //ゲーム難易度
@@ -33,7 +37,7 @@ public class CharactorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        HoemHpText.text = "0";
         ////動きの仮実装
         //リスト初期化
         ListPattern.Clear();
@@ -62,7 +66,7 @@ public class CharactorManager : MonoBehaviour
             var M_Pattern = new MovePattern();
 
             //移動方向の決定
-            M_Pattern.OutStartInit(Pattern.Angle.Down,Home_);
+            M_Pattern.InStartInit(Pattern.Angle.Down);
             //団体人数
             M_Pattern.People = 5;
             //家データの設定
@@ -83,7 +87,9 @@ public class CharactorManager : MonoBehaviour
         for (int i = 0; i < MaxHumanValue; i++)
         {
             //移動アップデート
-            ListPattern[i].Move();
+            
+            if(ListPattern[i].GetActiveMove() == Pattern.ActiveMove.Move) ListPattern[i].Move();
+
             //動いているオブジェクトが、Endになった時
             if(ListPattern[i].GetActiveMove() == Pattern.ActiveMove.End)
             {
@@ -93,9 +99,19 @@ public class CharactorManager : MonoBehaviour
                     Debug.Log("AddHuman");
                     //人間の加算処理。
                     Home_.AddHuman(ListPattern[i].People);
+
+                    //待機状態に
+                    ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
+
+                    ListCharaObj[i].gameObject.SetActive(false);
+
+                    HoemHpText.text =Home_.GetHumanValue().ToString();
                 }
-                
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log(Home_.GetHumanValue());
         }
     }
 }

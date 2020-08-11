@@ -35,12 +35,7 @@ public class SoundData
             }
         }
         var SoundAudio = Resources.Load<AudioClip>(FilePass) as AudioClip;
-
-        if(SoundAudio == null)
-        {
-            Debug.LogError(FilePass + "NULLError");
-        }
-
+        
         SoundData_.Add(KeyName, SoundAudio);
 
         Debug.Log("作成しました。("+KeyName+")");

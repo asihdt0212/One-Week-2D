@@ -55,6 +55,11 @@ public abstract class Pattern : ScriptableObject
     {
         return ActiveMove_;
     }
+    //状態の設定
+    public void SetAcitveMove(ActiveMove  active)
+    {
+        ActiveMove_ = active;
+    }
 
     public abstract void Move();
 
@@ -79,7 +84,7 @@ public class MovePattern : Pattern
     //目指す移動位置
     public GameObject TargetObject;
     //移動時間
-    public float MoveTime = 0.0f;
+    public float MoveTime = 5.0f;
     //移動出現方向
     public Angle PatternType_ = Angle.Up;
     Vector3 MoveAngle_ = Vector3.zero;
@@ -159,6 +164,8 @@ public class MovePattern : Pattern
         PatternType_ = angle;
 
         m_MoveFlag = false;
+
+        ActiveMove_ = ActiveMove.Move;
     }
     //出るほうの処理を行います。　引数移動方向
     public void OutStartInit(Angle angle,Home home_data)
@@ -174,6 +181,8 @@ public class MovePattern : Pattern
         PatternType_ = angle;
 
         m_MoveFlag = true;
+
+        ActiveMove_ = ActiveMove.Move;
     }
     //Pattern１
     public override void Move()
@@ -181,13 +190,13 @@ public class MovePattern : Pattern
         //入るほうの処理
         if (!m_MoveFlag)
         {
-            Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), 10.0f)
+            Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), MoveTime)
                    .OnComplete(() => End());
         }
         //出る方の処理
         else
         {
-            Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), 10.0f)
+            Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), MoveTime)
                    .OnComplete(() => End());
         }
         Debug.Log("Move実行");
@@ -197,7 +206,7 @@ public class MovePattern : Pattern
     public override void Move2()
     {
 
-        Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), 10.0f)
+        Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), MoveTime)
             .SetDelay(1f)
             .OnComplete(() => End() );
 
@@ -206,8 +215,12 @@ public class MovePattern : Pattern
     //終了処理
     public void End()
     {
-        //終了処理後
-        ActiveMove_ = ActiveMove.End;
-        
+        if(ActiveMove_ == ActiveMove.Move)
+        {
+            //終了処理後
+            ActiveMove_ = ActiveMove.End;
+
+        }
+
     }
 }
