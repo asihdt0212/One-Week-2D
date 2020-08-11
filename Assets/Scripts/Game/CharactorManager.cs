@@ -20,19 +20,8 @@ public class CharactorManager : MonoBehaviour
     Text HoemHpText;
 
     List<GameObject> ListCharaObj = new List<GameObject>();
-    //ゲーム難易度
-    public enum DifficultyLevel
-    {
-        Level1,
-        Level2,
-        Level3,
-        Level4,
-        Level5,
-    }
-    [Header("画面上に出現出来る人間の数")]
-    public int MaxHumanValue = 7;
 
-    DifficultyLevel DifficultyLevel_ = DifficultyLevel.Level1;
+    protected SelectMode SelectMode_; 
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +33,12 @@ public class CharactorManager : MonoBehaviour
         ListCharactor.Clear();
         ListCharaObj.Clear();
         //
+
+        SelectMode_ = new SelectMode();
+
         Home_ = new Home();
 
-        for (int i = 0; i < MaxHumanValue;i++)
+        for (int i = 0; i < SelectMode_.MaxHumanValue; i++)
         {
             //空のオブジェクト生成
             var CharactorObj = new GameObject();
@@ -66,7 +58,7 @@ public class CharactorManager : MonoBehaviour
             var M_Pattern = new MovePattern();
 
             //移動方向の決定
-            M_Pattern.InStartInit(Pattern.Angle.Down);
+            //M_Pattern.OutStartInit(Pattern.Angle.Down);
             //団体人数
             M_Pattern.People = 1;
             //家データの設定
@@ -84,7 +76,7 @@ public class CharactorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < MaxHumanValue; i++)
+        for (int i = 0; i < SelectMode_.MaxHumanValue; i++)
         {
             //移動アップデート
             
@@ -105,7 +97,7 @@ public class CharactorManager : MonoBehaviour
 
                     ListCharaObj[i].gameObject.SetActive(false);
 
-                    HoemHpText.text =Home_.GetHumanValue().ToString();
+                    HoemHpText.text = Home_.GetHumanValue().ToString();
                 }
             }
         }

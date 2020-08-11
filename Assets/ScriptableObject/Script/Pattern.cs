@@ -158,32 +158,38 @@ public class MovePattern : Pattern
             Mytransform.position = TargetObject.transform.position;
         }
     }
-    //入るほうの処理を行います。 引数移動方向
-    public void InStartInit(Angle angle)
+    //入る方向Left設定
+    public void HomeInInit()
     {
-        PatternType_ = angle;
+        //Left  or Down
+        PatternType_ = Angle.Left;
+
+        PatternType_ = Angle.Down;
 
         m_MoveFlag = false;
 
         ActiveMove_ = ActiveMove.Move;
     }
     //出るほうの処理を行います。　引数移動方向
-    public void OutStartInit(Angle angle,Home home_data)
+    public void HomeOutInit(Home home_data)
     {
-        //
+        //Right or Up
         if (!home_data.GainHuman(People))
         {
             Debug.Log("キャラクター生成できませんでした。");
             ActiveMove_ = ActiveMove.Wait;
             return;
         }
-        //
-        PatternType_ = angle;
+        //Right or Up
+        PatternType_ = Angle.Right;
+
+        PatternType_ = Angle.Up;
 
         m_MoveFlag = true;
 
         ActiveMove_ = ActiveMove.Move;
     }
+
     //Pattern１
     public override void Move()
     {
