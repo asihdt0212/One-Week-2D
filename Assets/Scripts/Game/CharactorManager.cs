@@ -77,7 +77,7 @@ public class CharactorManager : MonoBehaviour
        foreach(var L_Pattern in ListPattern)
         {
             L_Pattern.Move();
-
+   
         }
     }
 }
