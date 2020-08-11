@@ -130,4 +130,20 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+
+
+    //解答チェック
+    public void CheckAnswer(int answer)
+    {
+        int homeHumanCount = 0;     //CharactorManagerのHome_から人間の数を取得する
+        if (answer == homeHumanCount)
+        {
+            //正解
+        }
+        else
+        {
+            //ミス タイム減らす？
+        }
+    }
 }

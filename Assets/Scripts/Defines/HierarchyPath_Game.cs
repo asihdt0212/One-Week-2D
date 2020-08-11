@@ -12,6 +12,27 @@
 	{
 		public const string Root = "GameUICanvas";
 		public const string TimerLabel = "GameUICanvas/TimerLabel";
+		public const string AnswerButtonParent = "GameUICanvas/AnswerButtonParent";
+		public const string AnswerButtonParentButton = "GameUICanvas/AnswerButtonParent/Button";
+		public const string AnswerButtonParentButtonText = "GameUICanvas/AnswerButtonParent/Button/Text";
+		public const string AnswerButtonParentButton1 = "GameUICanvas/AnswerButtonParent/Button (1)";
+		public const string AnswerButtonParentButton1Text = "GameUICanvas/AnswerButtonParent/Button (1)/Text";
+		public const string AnswerButtonParentButton2 = "GameUICanvas/AnswerButtonParent/Button (2)";
+		public const string AnswerButtonParentButton2Text = "GameUICanvas/AnswerButtonParent/Button (2)/Text";
+		public const string AnswerButtonParentButton3 = "GameUICanvas/AnswerButtonParent/Button (3)";
+		public const string AnswerButtonParentButton3Text = "GameUICanvas/AnswerButtonParent/Button (3)/Text";
+		public const string AnswerButtonParentButton4 = "GameUICanvas/AnswerButtonParent/Button (4)";
+		public const string AnswerButtonParentButton4Text = "GameUICanvas/AnswerButtonParent/Button (4)/Text";
+		public const string AnswerButtonParentButton5 = "GameUICanvas/AnswerButtonParent/Button (5)";
+		public const string AnswerButtonParentButton5Text = "GameUICanvas/AnswerButtonParent/Button (5)/Text";
+		public const string AnswerButtonParentButton6 = "GameUICanvas/AnswerButtonParent/Button (6)";
+		public const string AnswerButtonParentButton6Text = "GameUICanvas/AnswerButtonParent/Button (6)/Text";
+		public const string AnswerButtonParentButton7 = "GameUICanvas/AnswerButtonParent/Button (7)";
+		public const string AnswerButtonParentButton7Text = "GameUICanvas/AnswerButtonParent/Button (7)/Text";
+		public const string AnswerButtonParentButton8 = "GameUICanvas/AnswerButtonParent/Button (8)";
+		public const string AnswerButtonParentButton8Text = "GameUICanvas/AnswerButtonParent/Button (8)/Text";
+		public const string AnswerButtonParentButton9 = "GameUICanvas/AnswerButtonParent/Button (9)";
+		public const string AnswerButtonParentButton9Text = "GameUICanvas/AnswerButtonParent/Button (9)/Text";
 	}
 	public struct ResultUICanvas
 	{
@@ -24,10 +45,6 @@
 		public const string ResultPanelTitleButtonTitleButtonLabel = "ResultUICanvas/ResultPanel/TitleButton/TitleButtonLabel";
 		public const string ResultPanelRankingButton = "ResultUICanvas/ResultPanel/RankingButton";
 		public const string ResultPanelRankingButtonRankingButtonLabel = "ResultUICanvas/ResultPanel/RankingButton/RankingButtonLabel";
-	}
-	public struct EventSystem
-	{
-		public const string Root = "EventSystem";
 	}
 	public struct RankingUICanvas
 	{
@@ -45,5 +62,65 @@
 		public const string RankingPanelScrollViewScrollbarVerticalSlidingAreaHandle = "RankingUICanvas/RankingPanel/Scroll View/Scrollbar Vertical/Sliding Area/Handle";
 		public const string RankingPanelCloseRankingButton = "RankingUICanvas/RankingPanel/CloseRankingButton";
 		public const string RankingPanelCloseRankingButtonText = "RankingUICanvas/RankingPanel/CloseRankingButton/Text";
+	}
+	public struct EventSystem
+	{
+		public const string Root = "EventSystem";
+	}
+	public struct SoundManager
+	{
+		public const string Root = "SoundManager";
+	}
+	public struct Charactor
+	{
+		public const string Root = "Charactor";
+	}
+	public struct CharactorManager
+	{
+		public const string Root = "CharactorManager";
+	}
+	public struct Human1
+	{
+		public const string Root = "Human1";
+	}
+	public struct Human2
+	{
+		public const string Root = "Human2";
+	}
+	public struct Human3
+	{
+		public const string Root = "Human3";
+	}
+	public struct Human4
+	{
+		public const string Root = "Human4";
+	}
+	public struct Home
+	{
+		public const string Root = "Home";
+	}
+	public struct MainObject
+	{
+		public const string Root = "MainObject";
+	}
+	public struct HomeCanvas
+	{
+		public const string Root = "HomeCanvas";
+		public const string HomePeopleText = "HomeCanvas/HomePeopleText";
+	}
+	public struct NCMB
+	{
+		public const string Root = "NCMB";
+		public const string NCMBManager = "NCMB/NCMBManager";
+		public const string NCMBSettings = "NCMB/NCMBSettings";
+	}
+	public struct RankingManager
+	{
+		public const string Root = "RankingManager";
+		public const string RankingLoader = "RankingManager/RankingLoader";
+	}
+	public struct UserDataManager
+	{
+		public const string Root = "UserDataManager";
 	}
 }
