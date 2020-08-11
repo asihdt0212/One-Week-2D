@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharactorManager : MonoBehaviour
+public class CharactorManager : Singleton<CharactorManager>
 {
     [SerializeField]
     GameObject[] gameObjects;
@@ -14,11 +14,9 @@ public class CharactorManager : MonoBehaviour
     List<Charactor> ListCharactor = new List<Charactor>();
     public GameObject TargetObj;
 
-    protected Home Home_;
+    public Home Home_;
 
-    [SerializeField]
-    Text HoemHpText;
-
+    
     List<GameObject> ListCharaObj = new List<GameObject>();
 
     protected SelectMode SelectMode_; 
@@ -26,7 +24,7 @@ public class CharactorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HoemHpText.text = "0";
+
         ////動きの仮実装
         //リスト初期化
         ListPattern.Clear();
@@ -35,6 +33,8 @@ public class CharactorManager : MonoBehaviour
         //
 
         SelectMode_ = new SelectMode();
+
+        SelectMode_.MaxHumanValue = 1;
 
         Home_ = new Home();
 
@@ -58,7 +58,7 @@ public class CharactorManager : MonoBehaviour
             var M_Pattern = new MovePatternLeft();
 
             //移動方向の決定
-            //M_Pattern.OutStartInit(Pattern.Angle.Down);
+            M_Pattern.HomeInInit();
             //団体人数
             M_Pattern.People = 1;
             //家データの設定
@@ -99,7 +99,7 @@ public class CharactorManager : MonoBehaviour
 
                     ListCharaObj[i].gameObject.SetActive(false);
 
-                    HoemHpText.text = Home_.GetHumanValue().ToString();
+                    HomeCanvasUI.instance.SetHumanText(Home_.GetHumanValue());
                 }
             }
         }

@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     //解答チェック
     public void CheckAnswer(int answer)
     {
-        int homeHumanCount = 0;     //CharactorManagerのHome_から人間の数を取得する
+        int homeHumanCount = CharactorManager.Instance.Home_.GetHumanValue() ;     //CharactorManagerのHome_から人間の数を取得する
         if (answer == homeHumanCount)
         {
             //正解
