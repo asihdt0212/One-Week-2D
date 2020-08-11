@@ -12,6 +12,8 @@ public class CharactorManager : MonoBehaviour
     //人間データの格納先
     List<Charactor> ListCharactor;
     public GameObject TargetObj;
+
+    List<GameObject> ListCharaObj;
     //ゲーム難易度
     public enum DifficultyLevel
     {
@@ -22,7 +24,7 @@ public class CharactorManager : MonoBehaviour
         Level5,
     }
     [Header("画面上に出現出来る人間の数")]
-    public int MaxHumanValue = 1;
+    public int MaxHumanValue = 7;
 
     DifficultyLevel DifficultyLevel_ = DifficultyLevel.Level1;
 
@@ -34,7 +36,7 @@ public class CharactorManager : MonoBehaviour
         //リスト初期化
         ListPattern = new List<Pattern>();
         ListCharactor = new List<Charactor>();
-        
+        ListCharaObj = new List<GameObject>();
 
         for (int i = 0; i < MaxHumanValue;i++)
         {
@@ -52,31 +54,46 @@ public class CharactorManager : MonoBehaviour
 
             //Patternと動くオブジェクトを設定
             var M_Pattern = new MovePattern();
-            //作ったオブジェクトのtransformの取得
-            M_Pattern.Mytransform = CharactorObj.transform;
+
             //移動方向の決定
-            M_Pattern.PatternType_ = Pattern.Angle.LeftUp;
-            //家から出ていく方へ
-            M_Pattern.m_MoveFlag = true;
+            M_Pattern.InStartInit(Pattern.Angle.Up);
+            //移動方向の決定
+            M_Pattern.OutStartInit(Pattern.Angle.Up);
             //家データの設定
             M_Pattern.TargetObject = TargetObj;
             //移動方向の初期化
-            M_Pattern.MoveAngleInit();
+            M_Pattern.MoveAngleInit(CharactorObj.transform);
             //リストへ追加
             ListPattern.Add(M_Pattern);
-
-            
 
         }
 
     }
+    
 
     // Update is called once per frame
     void Update()
     {
        foreach(var L_Pattern in ListPattern)
         {
-            L_Pattern.Move();
+            switch (L_Pattern.GetActiveMove())
+            {
+                case Pattern.ActiveMove.Wait:
+                    break;
+                case Pattern.ActiveMove.Move:
+
+                    L_Pattern.Move2();
+
+                    break;
+                case Pattern.ActiveMove.End:
+
+                    L_Pattern.Move2();
+
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
 }
