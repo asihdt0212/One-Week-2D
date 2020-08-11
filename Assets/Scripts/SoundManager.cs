@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class  SoundManager : Singleton<SoundManager>
 {
-    [SerializeField]
+    
     AudioSource MyBGMAudioSource;
     AudioSource MySEAudioSource;
     //音楽データ作成用
@@ -18,6 +18,10 @@ public class  SoundManager : Singleton<SoundManager>
         //初期化
         SoundSEData_ = new SoundData();
         SoundBGMData_ = new SoundData();
+
+        //オーディオソースを追加;
+        MyBGMAudioSource = this.gameObject.AddComponent<AudioSource>();
+        MySEAudioSource = this.gameObject.AddComponent<AudioSource>();
         //Soundのロード
         LoadSoundResource();
 
@@ -29,11 +33,12 @@ public class  SoundManager : Singleton<SoundManager>
     private void LoadSoundResource()
     {
         //記入例
-        SoundSEData_.LoadSoundData("","");
+        SoundSEData_.LoadSoundData("Sound/SE/KomoriSE/anime01/anime01/anime_flying", "SE1");
+        SoundSEData_.LoadSoundData(Define.Audio_1000hznoise, "SE2");
         //\記入例
 
-        SoundBGMData_.LoadSoundData("", "");
-
+        SoundBGMData_.LoadSoundData("Sound/BGM/ReoMusic/スペースコロニー", "BGM1");
+        SoundSEData_.LoadSoundData(Define.Audio_地下アジト, "BGM2");
     }
     
     /// </書き足す所>
@@ -45,11 +50,11 @@ public class  SoundManager : Singleton<SoundManager>
 
         if (SoundData == null)
         {
-            Debug.LogError(KeyName + "キーネームは設定されていません(SE)");
+            Debug.LogError(KeyName+"の中身が"+SoundData+"です。（BGM）");
             return;
         }
 
-
+        //ワンショットでならす
         MySEAudioSource.PlayOneShot(SoundData);
     }
     //BGMを流す
@@ -61,38 +66,56 @@ public class  SoundManager : Singleton<SoundManager>
 
         if(SoundData == null)
         {
-            Debug.LogError(KeyName+"キーネームは設定されていません(BGM");
+            Debug.LogError(KeyName + "の中身が" + SoundData + "です。（SE）");
             return;
         }
-
+        //設定BGMの変更
         MyBGMAudioSource.clip = SoundData;
-
+        //BGMを流す
         MyBGMAudioSource.Play();
     }
     
     //BGMを流す
-    public void BGMPlay()
+    public void Play()
     {
         MyBGMAudioSource.Play();
     }
     //BGMを止める
-    public void BGMStop()
+    public void Stop()
     {
         MyBGMAudioSource.Stop();
     }
-    //SEのプレイ
-    public void SEPlayer()
+    //BGMをポーズ
+    public void Pause()
     {
-        MySEAudioSource.Play();
+        MyBGMAudioSource.Pause();
+    }
+    //BGMをポーズ解除
+    public void UnPause()
+    {
+        MyBGMAudioSource.UnPause();
     }
     //SEの止める
     public void SEStop()
     {
         MySEAudioSource.Stop();
     }
-    public void BGMVolumeChange()
+    //BGMのボリューム変更// 0～１
+    public void BGMVolumeChange(float value)
     {
-
+        //0～1超えないようにする。
+        float value_ = Mathf.Clamp(value, 0, 1);
+        //ボリューム設定
+        MyBGMAudioSource.volume = value_;
     }
+    //SEのボリューム変更// 0～1
+    public void SEVolumeChange(float value)
+    {
+        //0～1超えないようにする。
+        float value_ = Mathf.Clamp(value, 0, 1);
+        //ボリューム設定
+        MySEAudioSource.volume = value_;
+    }
+    
 
 }
