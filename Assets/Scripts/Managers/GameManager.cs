@@ -137,13 +137,19 @@ public class GameManager : MonoBehaviour
     public void CheckAnswer(int answer)
     {
         int homeHumanCount = CharactorManager.Instance.GetHome().GetHumanValue() ;     //CharactorManagerのHome_から人間の数を取得する
-        if (answer == homeHumanCount)
-        {
-            //正解
-        }
-        else
-        {
-            //ミス タイム減らす？
-        }
+        HomeCanvasUI.instance.SetHumanText(homeHumanCount, () => {
+            //カウントが終わったら正誤チェックをする
+            if (answer == homeHumanCount)
+            {
+                //正解
+                Debug.LogError("正解！");
+            }
+            else
+            {
+                //ミス タイム減らす？
+                Debug.LogError("ミス！");
+            }
+
+        });
     }
 }
