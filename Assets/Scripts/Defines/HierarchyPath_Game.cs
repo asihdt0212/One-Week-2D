@@ -106,7 +106,7 @@
 	public struct HomeCanvas
 	{
 		public const string Root = "HomeCanvas";
-		public const string HomePeopleText = "HomeCanvas/HomePeopleText";
+		public const string HomeHumanText = "HomeCanvas/HomeHumanText";
 	}
 	public struct NCMB
 	{
