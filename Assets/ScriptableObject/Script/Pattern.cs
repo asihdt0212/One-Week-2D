@@ -6,6 +6,13 @@ using DG.Tweening;
 
 public abstract class Pattern : ScriptableObject
 {
+    //キャラクター状態 
+    public enum ActiveMove {
+        Wait,//待機（出現していない）
+        Move,//移動中
+        End,//移動完了時（完了後消す）
+    }
+
     //移動方向
     public enum Angle
     {
@@ -38,8 +45,14 @@ public abstract class Pattern : ScriptableObject
 
     //出現から移動 false、待機から移動消える true
     public bool m_MoveFlag = false;
-    
 
+    //キャラクターの状態
+    protected ActiveMove ActiveMove_ = ActiveMove.Wait;
+    //キャラクターの状態を返す。
+    public ActiveMove GetActiveMove()
+    {
+        return ActiveMove_;
+    }
 
     public abstract void Move();
 
@@ -70,13 +83,16 @@ public class MovePattern : Pattern
     Vector3 MoveAngle_ = Vector3.zero;
     //ターゲットから離れている長さ
     public float LenthValue = 8;
-    //移動前の初期化
-    public void MoveAngleInit()
+    //移動前の初期化 //動かすオブジェクトの位置データ参照データを引数。
+    public void MoveAngleInit(Transform transform)
     {
         if(Mytransform == null)
         {
             Debug.Log("NNULLL");
         }
+        //オブジェクトのTransform参照データの受け渡し。
+        Mytransform = transform;
+        //オブジェクト位置を変える
         Mytransform.position = TargetObject.transform.position;
 
         Debug.Log(Mytransform.position);
@@ -132,6 +148,16 @@ public class MovePattern : Pattern
             Mytransform.position = TargetObject.transform.position;
         }
     }
+    //入るほうの処理を行います。 引数移動方向
+    public void InStartInit(Angle angle)
+    {
+        
+    }
+    //出るほうの処理を行います。　引数移動方向
+    public void OutStartInit(Angle angle)
+    {
+
+    }
     //Pattern１
     public override void Move()
     {
@@ -150,13 +176,21 @@ public class MovePattern : Pattern
         Debug.Log("Move実行");
     }
     
-    //Pattern2 待機時間 移動　
+    //Pattern2 移動開始まで時間待つ
     public override void Move2()
     {
 
         Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), 10.0f)
-                    .OnComplete(() => Debug.Log("completed"));
+            .SetDelay(1f)
+            .OnComplete(() => End() );
 
         Debug.Log("Move2実行");
+    }
+    //終了処理
+    public void End()
+    {
+        //終了処理後
+        ActiveMove_ = ActiveMove.End;
+        
     }
 }
