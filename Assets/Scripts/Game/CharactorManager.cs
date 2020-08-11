@@ -55,7 +55,7 @@ public class CharactorManager : MonoBehaviour
             ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
 
             //Patternと動くオブジェクトを設定
-            var M_Pattern = new MovePattern();
+            var M_Pattern = new MovePatternLeft();
 
             //移動方向の決定
             //M_Pattern.OutStartInit(Pattern.Angle.Down);
@@ -67,6 +67,8 @@ public class CharactorManager : MonoBehaviour
             M_Pattern.MoveAngleInit(CharactorObj.transform);
             //リストへ追加
             ListPattern.Add(M_Pattern);
+            //親
+            CharactorObj.gameObject.transform.parent= this.transform;
 
         }
 

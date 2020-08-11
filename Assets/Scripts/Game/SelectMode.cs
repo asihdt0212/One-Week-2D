@@ -15,18 +15,16 @@ public class SelectMode : MonoBehaviour
     }
     [Header("画面上に出現出来る人間の数")]
     public int MaxHumanValue = 9;
-
+    //難易度設定
     DifficultyLevel DifficultyLevel_ = DifficultyLevel.Level1;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public SelectMode()
+    {   //難易度設定
+        DifficultyLevel_ = DifficultyLevel.Level1;
     }
-
-    // Update is called once per frame
-    void Update()
+    //難易度選択
+    public SelectMode(DifficultyLevel difficulty)
     {
-        
+        DifficultyLevel_ = difficulty;
     }
 }
