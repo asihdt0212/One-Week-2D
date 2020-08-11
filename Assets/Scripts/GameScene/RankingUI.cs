@@ -32,10 +32,10 @@ public class RankingUI : MonoBehaviour
 
         //ボタン設定
         closeRankingPanelButton.onClick.RemoveAllListeners();
-        closeRankingPanelButton.onClick.AddListener(() => { ShowRankingPanel(false); });
+        //closeRankingPanelButton.onClick.AddListener(() => { ShowRankingPanel(false); });
 
         //非表示
-        rankingPanel.SetActive(false);
+        //rankingPanel.SetActive(false);
     }
 
     public void ShowRankingPanel(bool show)

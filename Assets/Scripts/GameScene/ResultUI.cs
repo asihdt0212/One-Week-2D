@@ -70,7 +70,8 @@ public class ResultUI : MonoBehaviour
     {
         yield return null;
 
-        RankingUI.instance.ShowRankingPanel(true);
+        //RankingUI.instance.ShowRankingPanel(true);
+        RankingManager.instance.ShowRanking(true);
     }
 
 
