@@ -75,6 +75,7 @@ public class CharactorManager : Singleton<CharactorManager>
 
             //乱数を生成
             float R_Value =  Random.Range(0f, 1f) * 59;
+    
 
             //乱数に応じて行動種類を選択
             if (R_Value >= 0 && R_Value < 10)
@@ -167,6 +168,15 @@ public class CharactorManager : Singleton<CharactorManager>
                 default:
                     break;
             }
+            //人間に人数をランダムで入れる
+            int R_humanValue = Random.Range(1, 3);
+
+            Debug.Log(R_humanValue);
+
+            //人間のが数を入れる。
+            M_Pattern.Human = R_humanValue;
+            //数分　人間オブジェクを生成
+            ListCharactor[i].CreateCharacter(R_humanValue);
 
             //移動方向の初期化
             M_Pattern.MoveAngleInit();
@@ -197,6 +207,7 @@ public class CharactorManager : Singleton<CharactorManager>
                     //移動の実行
                     if (G_Time > ListPattern[i].GetMyNumber())
                     {
+                        //出るか入るかどちらのフラグが立っているかのチェック
                         if (ListPattern[i].m_MoveFlag)
                         {
                             //人間が家にいるかチェック
@@ -204,15 +215,20 @@ public class CharactorManager : Singleton<CharactorManager>
                         }
                         else
                         {
-                            //移動開始時にもし、家が満タンだった時
-                            if(GetHomeInCharactorCheck() >= SelectMode_.MaxHumanValue)
+                            //移動開始時にもし、家が満タンだった時 または　家の人間の数と入ろうとしている人間がオーバーしているとき
+                            if (GetHomeInCharactorCheck() >= SelectMode_.MaxHumanValue ||
+                                GetHomeInCharactorCheck() + ListPattern[i].Human > SelectMode_.MaxHumanValue)
                             {
-                                //入るパターンに変更
+                                
+                                //出るパターンに変更
                                 ListPattern[i].RondomHomeOutInit();
+                                //移動位置の変更
+                                ListPattern[i].MoveAngleInit();
                             }
                             //満タンではない
                             else
                             {
+                                //
                                 ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Move);
                             }
                             
@@ -233,9 +249,10 @@ public class CharactorManager : Singleton<CharactorManager>
                     //出現から移動の終了時 false、
                     if (!ListPattern[i].m_MoveFlag)
                     {
-                        Debug.Log("AddHuman");
+                        Debug.Log("AddHuman + " + ListPattern[i].Human);
                         //人間の加算処理。
                         Home_.AddHuman(ListPattern[i].Human);
+                        
 
                         //HomeCanvasUI.instance.SetHumanText(Home_.GetHumanValue());
 
@@ -251,13 +268,13 @@ public class CharactorManager : Singleton<CharactorManager>
                     //最後の奴の場合
                     if (i == (ListPattern.Count - 1))
                     {
-                        Debug.Log("OK");
+                        Debug.Log("Last OK");
                         GameUI.instance.SetAnswerMode();
                     }
                     //それ以外
                     else
                     {
-                        Debug.Log("NO" + i + " " + (ListPattern.Count - 1));
+                        //Debug.Log("NO" + i + " " + (ListPattern.Count - 1));
                     }
 
                     break;
@@ -269,10 +286,9 @@ public class CharactorManager : Singleton<CharactorManager>
 
             
         }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
+        
             Debug.Log(Home_.GetHumanValue());
-        }
+        
     }
 
 
@@ -284,20 +300,23 @@ public class CharactorManager : Singleton<CharactorManager>
     //家に向かっている人間の数を調べる。
     public int GetHomeInCharactorCheck()
     {
-        int TotalHumanValue = 0;
+        //return値の格納変数を用意//家にいる人数分を入れる
+        int TotalHumanValue = Home_.GetHumanValue(); 
 
-        TotalHumanValue = Home_.GetHumanValue();
-
+        //今移動中で家に入ろうとしているのキャラを入れる変数
         int MoveCharactorValue = 0;
 
+        //今家に入ろうと動いているキャラを取得
         foreach(var L_Pattern in ListPattern)
         {
             if (L_Pattern.GetActiveMove() == Pattern.ActiveMove.Move || L_Pattern.m_MoveFlag == false)
             {
-                MoveCharactorValue++;
+                //人間分かううんとする。
+                MoveCharactorValue+= L_Pattern.Human;
             }
         }
 
-            return TotalHumanValue;
+        return TotalHumanValue;
     }
+
 }

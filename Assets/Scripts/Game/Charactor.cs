@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Charactor : MonoBehaviour
 {
+    //画像の変更に使うものだったもの
     public enum ChangeSpriteType
     {
         Wait,
@@ -11,8 +12,9 @@ public class Charactor : MonoBehaviour
         Banzai,
         Run,
     }
+    //読みこんだspriteデータの格納先
     List<Sprite> CharactorSprite;
-    
+    //初期化
     public void Init()
     {
         this.gameObject.transform.localScale = new Vector3(0.4f, 0.4f, 0);
@@ -35,6 +37,36 @@ public class Charactor : MonoBehaviour
         else
         {
             Debug.Log("308 読み込み出来ませんでした");
+        }
+    }
+    //人数分画像を生成。
+    public void CreateCharacter(int CreateHumanvalue)
+    {
+        for (int i = 1; i < CreateHumanvalue; i++)
+        {
+            Debug.Log("実行");
+            //自分の複製を作って
+            GameObject CreateObj = Instantiate(this.gameObject) as GameObject;
+
+            //ずらしの値を生成
+            Vector3 OffSet = this.transform.localScale*2;
+            OffSet.y = 0.0f;
+
+            //偶数の時 
+            if ((i % 2) == 0){
+                //大きさ分+の方へずらす
+                CreateObj.transform.position += OffSet * ((i / 2)+1);
+            }
+            //奇数の時
+            else
+            {
+                //大きさ分-の方へずらす
+                CreateObj.transform.position -= OffSet * ((i / 2) + 1);
+            }
+
+            //子データになる。
+            CreateObj.transform.parent = this.transform;
+
         }
     }
     public void ChangeSprite(ChangeSpriteType spriteType)

@@ -41,11 +41,8 @@ public abstract class Pattern : ScriptableObject
     };
 
 
-    //グループ人数
-    [Range(1, 1)]
+
     public int Human = 1;
-
-
 
     //出現から移動 false、待機から移動消える true
     public bool m_MoveFlag = false;
@@ -234,7 +231,7 @@ public class MovePattern : Pattern
         if (m_MoveFlag == true)
         {
             //入っている人間が　0人以下
-            if(home.GetHumanValue() <= 0)
+            if(home.GetHumanValue() - Human <= 0)
             {
 
                 //入っていく方の動きに変更
@@ -243,7 +240,8 @@ public class MovePattern : Pattern
             }
             else
             {
-                home.GainHuman(1);
+                //人間の数文減らす
+                home.GainHuman(Human);
 
                 ActiveMove_ = ActiveMove.Move;
             }
@@ -295,6 +293,5 @@ public class MovePattern : Pattern
             ActiveMove_ = ActiveMove.End;
 
         }
-
     }
 }
