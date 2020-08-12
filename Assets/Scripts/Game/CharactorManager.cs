@@ -198,11 +198,23 @@ public class CharactorManager : Singleton<CharactorManager>
                     {
                         if (ListPattern[i].m_MoveFlag)
                         {
+                            //人間が家にいるかチェック
                             ListPattern[i].HouseHumanCheck(Home_);
                         }
                         else
                         {
-                            ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Move);
+                            //移動開始時にもし、家が満タンだった時
+                            if(GetHomeInCharactorCheck() >= SelectMode_.MaxHumanValue)
+                            {
+                                //入るパターンに変更
+                                ListPattern[i].RondomHomeOutInit();
+                            }
+                            //満タンではない
+                            else
+                            {
+                                ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Move);
+                            }
+                            
                         }
                         
                     }
@@ -210,10 +222,11 @@ public class CharactorManager : Singleton<CharactorManager>
 
                     break;
                 case Pattern.ActiveMove.Move:
-
+                    //移動実行
                     ListPattern[i].Move();
                     
                     break;
+
                 case Pattern.ActiveMove.End:
 
                     //出現から移動の終了時 false、
@@ -223,20 +236,24 @@ public class CharactorManager : Singleton<CharactorManager>
                         //人間の加算処理。
                         Home_.AddHuman(ListPattern[i].Human);
 
-                        //待機状態に
-                        ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
-
-                        ListCharaObj[i].gameObject.SetActive(false);
-
                         //HomeCanvasUI.instance.SetHumanText(Home_.GetHumanValue());
 
                         //全員の移動が完了時 GameUI.SetAnswerMode()を呼び出す。
                     }
+
+                    //待機状態に
+                    ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
+
+                    //オブジェクトを消す
+                    ListCharaObj[i].gameObject.SetActive(false);
+
+                    //最後の奴の場合
                     if (i == (ListPattern.Count - 1))
                     {
                         Debug.Log("OK");
                         GameUI.instance.SetAnswerMode();
                     }
+                    //それ以外
                     else
                     {
                         Debug.Log("NO" + i + " " + (ListPattern.Count - 1));
@@ -261,5 +278,25 @@ public class CharactorManager : Singleton<CharactorManager>
     public Home GetHome()
     {
         return Home_;
+    }
+    //家に入っている人間の数と、
+    //家に向かっている人間の数を調べる。
+    public int GetHomeInCharactorCheck()
+    {
+        int TotalHumanValue = 0;
+
+        TotalHumanValue = Home_.GetHumanValue();
+
+        int MoveCharactorValue = 0;
+
+        foreach(var L_Pattern in ListPattern)
+        {
+            if (L_Pattern.GetActiveMove() == Pattern.ActiveMove.Move || L_Pattern.m_MoveFlag == false)
+            {
+                MoveCharactorValue++;
+            }
+        }
+
+            return TotalHumanValue;
     }
 }
