@@ -87,12 +87,12 @@ public class MovePattern : Pattern
     //目指す移動位置
     private GameObject TargetObject;
     //移動時間
-    private float MoveTime = 5.0f;
+    private float MoveTime = 2.0f;
     //移動出現方向
     private Angle PatternType_ = Angle.Up;
     private Vector3 MoveAngle_ = Vector3.zero;
     //ターゲットから離れている長さ
-    const float LenthValue = 8.0f;
+    const float LenthValue = 10.0f;
     //何番目か
     private int MyNumber = 0;
     public MovePattern(int Number,Transform Transform ,GameObject TargetObj)
@@ -256,9 +256,10 @@ public class MovePattern : Pattern
         //出る方の処理
         else
         {
-            Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LenthValue), Mytransform.position.y +( MoveAngle_.y * LenthValue), Mytransform.position.z + (MoveAngle_.z * LenthValue)), duration: MoveTime)
+            Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LenthValue), Mytransform.position.y + (MoveAngle_.y * LenthValue), Mytransform.position.z + (MoveAngle_.z * LenthValue)), duration: MoveTime)
                 .SetEase(Ease.Linear)
-                ;
+                .OnComplete(() => End());
+                
         }
         //Debug.Log("Move実行");
     }
