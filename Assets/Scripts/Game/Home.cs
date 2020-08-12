@@ -20,17 +20,20 @@ public class Home : MonoBehaviour
     public void AddHuman(int AddHumanValue)
     {
         TotalHuman += AddHumanValue;
+        Debug.Log($"人間の数：{TotalHuman}");
     }
     //人間が減る//Trueは無事に人間の量が減らせました。
     //false　は減らせなかった。
     public bool GainHuman(int GainHumanValue)
     {
+        Debug.Log($"GainHuman{GainHumanValue}");
         //減らした値が０未満はfalse;
         if ((TotalHuman - GainHumanValue) < 0)
         {
             return false;
         }
         TotalHuman -= GainHumanValue;
+        Debug.Log($"人間の数：{TotalHuman}");
         return true;
     }
     //人間の数の取得
