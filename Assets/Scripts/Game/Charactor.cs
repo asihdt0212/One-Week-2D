@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Charactor : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Charactor : MonoBehaviour
     }
     //読みこんだspriteデータの格納先
     List<Sprite> CharactorSprite;
+    private SpriteRenderer _renderer = default;
+
+
     //初期化
     public void Init()
     {
@@ -32,7 +36,9 @@ public class Charactor : MonoBehaviour
             {
                 CharactorSprite.Add(LoadSprite[i]);
             }
-            this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[0];
+            _renderer = this.GetComponent<SpriteRenderer>();
+            _renderer.sprite = CharactorSprite.FirstOrDefault();
+            //this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[0];
         }
         else
         {
@@ -71,7 +77,8 @@ public class Charactor : MonoBehaviour
     }
     public void ChangeSprite(ChangeSpriteType spriteType)
     {
-        this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)spriteType];
+        //this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)spriteType];
+        _renderer.sprite = CharactorSprite[(int)spriteType];
         /*
         switch (spriteType)
         {
