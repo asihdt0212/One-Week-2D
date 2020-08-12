@@ -95,7 +95,7 @@ public class MovePattern : Pattern
     const float LenthValue = 10.0f;
     //何番目か
     private int MyNumber = 0;
-    public MovePattern(int Number,Transform Transform ,GameObject TargetObj)
+    public MovePattern(int Number,Transform Transform ,GameObject TargetObj,float SetMoveTime)
     {
         //自分の番号
         MyNumber = Number;
@@ -105,6 +105,13 @@ public class MovePattern : Pattern
 
         //家データ
         TargetObject = TargetObj;
+
+        //移動時間
+        Debug.Log(SetMoveTime);
+        MoveTime =  SetMoveTime;
+
+        //
+        MyNumber = (int)(MyNumber * SetMoveTime);
     }
 
     //移動前の初期化 //動かすオブジェクトの位置データ参照データを引数。

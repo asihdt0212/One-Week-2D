@@ -15,14 +15,13 @@ public class CharactorManager : Singleton<CharactorManager>
     public GameObject TargetObj;
     //家データ
     private Home Home_;
-    
+    //キャラクターオブジェクトの格納先
     List<GameObject> ListCharaObj = new List<GameObject>();
-
-    protected SelectMode SelectMode_;
-
+    //ゲームの更新タイム
     private float G_Time = 0;
 
-    public int CreateHumanValue = 18;
+    //ゲーム難易度の要素
+    private SelectMode SelectMode_ = new SelectMode();
 
     //Patternの作成パターン
     /*
@@ -57,17 +56,27 @@ public class CharactorManager : Singleton<CharactorManager>
 
         CreatePatternType_.Clear();
 
-        SelectMode_ = new SelectMode();
+        //時間の初期化
+        G_Time = 0;
+        //家データの作成
+        Home_ = new Home(0);
+        //ゲーム難易度の初期化?
+        //ぐるぐるするなら、呼び出さないほうが良いかも?(上のnewで一応初期化は出来ていますが...)
+        //SelectMode_.SelectModeInit();
+        //ゲームの難易度を10へ設定
+        SelectMode_.SetGameLevel(10);
 
-        SelectMode_.CreateMaxHumanValue = 18;
 
         //ランダムにCreatePatternType_に成分を入れる。
-        for (int i = 0;i < SelectMode_.CreateMaxHumanValue; i++)
+        for (int i = 0;i < SelectMode_.GetCreateMaxHumanValue(); i++)
         {
+            //キャラクターの行動種類のパターン変数を宣言
             CreatePatternType CreatePatternTypes;
 
+            //乱数を生成
             float R_Value =  Random.Range(0f, 1f) * 59;
 
+            //乱数に応じて行動種類を選択
             if (R_Value >= 0 && R_Value < 10)
             {
                 CreatePatternTypes = CreatePatternType.RandomHomeInType;
@@ -96,20 +105,12 @@ public class CharactorManager : Singleton<CharactorManager>
             {
                 CreatePatternTypes = CreatePatternType.RandomHomeInType;
             }
-
+            //キャラクターのパターンを入れる
             CreatePatternType_.Add(CreatePatternTypes);
         }
 
         
-        //
-
-        
-
-        G_Time = 0;
-
-        Home_ = new Home(0);
-
-        for (int i = 0; i < SelectMode_.CreateMaxHumanValue; i++)
+        for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
         {
             //空のオブジェクト生成
             var CharactorObj = new GameObject();
@@ -126,7 +127,7 @@ public class CharactorManager : Singleton<CharactorManager>
             ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
 
             //Patternと動くオブジェクトを設定
-            var M_Pattern = new MovePattern(i, CharactorObj.transform,TargetObj);
+            var M_Pattern = new MovePattern(i, CharactorObj.transform,TargetObj,SelectMode_.GetCharacterSppedValue());
             
             //Patternの設定
             switch (CreatePatternType_[i])
@@ -184,7 +185,7 @@ public class CharactorManager : Singleton<CharactorManager>
     void Update()
     {
         G_Time += Time.deltaTime;
-        for (int i = 0; i < SelectMode_.CreateMaxHumanValue; i++)
+        for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
         {
             //移動アップデート
 
