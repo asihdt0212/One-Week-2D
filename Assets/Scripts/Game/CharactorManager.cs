@@ -9,7 +9,7 @@ public class CharactorManager : Singleton<CharactorManager>
     GameObject[] gameObjects;
     
     //Patternリスト
-    List<Pattern> ListPattern = new List<Pattern>();
+    List<MovePattern> ListPattern = new List<MovePattern>();
     //人間データの格納先
     List<Charactor> ListCharactor = new List<Charactor>();
     public GameObject TargetObj;
@@ -19,6 +19,10 @@ public class CharactorManager : Singleton<CharactorManager>
     List<GameObject> ListCharaObj = new List<GameObject>();
 
     protected SelectMode SelectMode_;
+
+    private float G_Time = 0;
+
+    public int CreateHumanValue = 18;
 
     //Patternの作成パターン
     /*
@@ -53,8 +57,12 @@ public class CharactorManager : Singleton<CharactorManager>
 
         CreatePatternType_.Clear();
 
+        SelectMode_ = new SelectMode();
+
+        SelectMode_.CreateMaxHumanValue = 18;
+
         //ランダムにCreatePatternType_に成分を入れる。
-        for(int i = 0;i < 9; i++)
+        for (int i = 0;i < SelectMode_.CreateMaxHumanValue; i++)
         {
             CreatePatternType CreatePatternTypes;
 
@@ -95,13 +103,13 @@ public class CharactorManager : Singleton<CharactorManager>
         
         //
 
-        SelectMode_ = new SelectMode();
-
         
 
-        Home_ = new Home();
+        G_Time = 0;
 
-        for (int i = 0; i < SelectMode_.MaxHumanValue; i++)
+        Home_ = new Home(0);
+
+        for (int i = 0; i < SelectMode_.CreateMaxHumanValue; i++)
         {
             //空のオブジェクト生成
             var CharactorObj = new GameObject();
@@ -119,7 +127,8 @@ public class CharactorManager : Singleton<CharactorManager>
 
             //Patternと動くオブジェクトを設定
             var M_Pattern = new MovePattern(i, CharactorObj.transform,TargetObj);
-
+            
+            //Patternの設定
             switch (CreatePatternType_[i])
             {
                 case CreatePatternType.RandomHomeInType:
@@ -157,11 +166,10 @@ public class CharactorManager : Singleton<CharactorManager>
                 default:
                     break;
             }
-            
- 
 
             //移動方向の初期化
             M_Pattern.MoveAngleInit();
+            
             //リストへ追加
             ListPattern.Add(M_Pattern);
             //親
@@ -175,32 +183,73 @@ public class CharactorManager : Singleton<CharactorManager>
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < SelectMode_.MaxHumanValue; i++)
+        G_Time += Time.deltaTime;
+        for (int i = 0; i < SelectMode_.CreateMaxHumanValue; i++)
         {
             //移動アップデート
-            
-            ListPattern[i].Move();
 
-            //動いているオブジェクトが、Endになった時
-            if(ListPattern[i].GetActiveMove() == Pattern.ActiveMove.End)
+            switch (ListPattern[i].GetActiveMove())
             {
-                //出現から移動の終了時 false、
-                if (!ListPattern[i].m_MoveFlag)
-                {
-                    Debug.Log("AddHuman");
-                    //人間の加算処理。
-                    Home_.AddHuman(ListPattern[i].Human);
+                case Pattern.ActiveMove.Wait:
+                    break;
+                case Pattern.ActiveMove.MoveCheck:
+                    //移動の実行
+                    if (G_Time > ListPattern[i].GetMyNumber())
+                    {
+                        if (ListPattern[i].m_MoveFlag)
+                        {
+                            ListPattern[i].HouseHumanCheck(Home_);
+                        }
+                        else
+                        {
+                            ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Move);
+                        }
+                        
+                    }
 
-                    //待機状態に
-                    ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
 
-                    ListCharaObj[i].gameObject.SetActive(false);
+                    break;
+                case Pattern.ActiveMove.Move:
 
-                    //HomeCanvasUI.instance.SetHumanText(Home_.GetHumanValue());
+                    ListPattern[i].Move();
+                    
+                    break;
+                case Pattern.ActiveMove.End:
 
-                    //全員の移動が完了時 GameUI.SetAnswerMode()を呼び出す。
-                }
+                    //出現から移動の終了時 false、
+                    if (!ListPattern[i].m_MoveFlag)
+                    {
+                        Debug.Log("AddHuman");
+                        //人間の加算処理。
+                        Home_.AddHuman(ListPattern[i].Human);
+
+                        //待機状態に
+                        ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
+
+                        ListCharaObj[i].gameObject.SetActive(false);
+
+                        //HomeCanvasUI.instance.SetHumanText(Home_.GetHumanValue());
+
+                        //全員の移動が完了時 GameUI.SetAnswerMode()を呼び出す。
+                    }
+                    if (i == (ListPattern.Count - 1))
+                    {
+                        Debug.Log("OK");
+                        GameUI.instance.SetAnswerMode();
+                    }
+                    else
+                    {
+                        Debug.Log("NO" + i + " " + (ListPattern.Count - 1));
+                    }
+
+                    break;
+                default:
+                    break;
             }
+
+           
+
+            
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {

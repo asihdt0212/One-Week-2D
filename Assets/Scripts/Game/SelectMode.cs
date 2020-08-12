@@ -13,8 +13,11 @@ public class SelectMode : MonoBehaviour
         Level4,
         Level5,
     }
-    [Header("画面上に出現出来る人間の数")]
+   //家の中の最大人数
     public int MaxHumanValue = 9;
+
+    public int CreateMaxHumanValue = 9;
+
     //難易度設定
     DifficultyLevel DifficultyLevel_ = DifficultyLevel.Level1;
 

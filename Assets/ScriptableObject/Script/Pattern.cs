@@ -10,6 +10,7 @@ public abstract class Pattern : ScriptableObject
     //キャラクター状態 
     public enum ActiveMove {
         Wait,//待機（出現していない）
+        MoveCheck,//出る移動ができるかのチェック
         Move,//移動中
         End,//移動完了時（完了後消す）
     }
@@ -91,7 +92,7 @@ public class MovePattern : Pattern
     private Angle PatternType_ = Angle.Up;
     private Vector3 MoveAngle_ = Vector3.zero;
     //ターゲットから離れている長さ
-    const float LenthValue = 4.0f;
+    const float LenthValue = 8.0f;
     //何番目か
     private int MyNumber = 0;
     public MovePattern(int Number,Transform Transform ,GameObject TargetObj)
@@ -161,7 +162,7 @@ public class MovePattern : Pattern
         //乱数でLeftかUpを決める
         float RandomValue = Random.Range(0f, 1f)*10;
 
-        //Left Upの選択
+        //Left Downの選択
         if(RandomValue > 5)
         {
             PatternType_ = Angle.Right;
@@ -179,22 +180,12 @@ public class MovePattern : Pattern
         //入る選択
         m_MoveFlag = false;
         //アクティブ状態を移動に変更
-        ActiveMove_ = ActiveMove.Move;
+        ActiveMove_ = ActiveMove.MoveCheck;
     }
     //出るほうの処理を行います。　引数移動方向
     public void RondomHomeOutInit()
     {
         Debug.Log("ランダムOUT生成");
-
-
-        //生成できるかチェック。
-        if (!CharactorManager.Instance.GetHome().GainHuman(Human))
-        {
-            Debug.Log("キャラクター生成できませんでした。");
-            //生成できなかったので入るほうを作成
-            RondomHomeInInit();
-            return;
-        }
 
         //乱数でLeftかUpを決める
         float RandomValue = Random.Range(0f, 1f) * 10;
@@ -206,7 +197,7 @@ public class MovePattern : Pattern
         }
         else if (RandomValue < 5)
         {
-            PatternType_ = Angle.Down;
+            PatternType_ = Angle.Up;
         }
         else
         {
@@ -217,8 +208,8 @@ public class MovePattern : Pattern
  
         //出る方
         m_MoveFlag = true;
-        //アクティブ状態を移動に変更
-        ActiveMove_ = ActiveMove.Move;
+        //アクティブ状態を移動Checkモードに変更
+        ActiveMove_ = ActiveMove.MoveCheck;
     }
     //
     public void HomeSelectInInit()
@@ -229,22 +220,45 @@ public class MovePattern : Pattern
     {
         RondomHomeOutInit();
     }
+    //家に人がいるかいないか　//
+    public void HouseHumanCheck(Home home)
+    {
+        //出ていくフラグの時
+        if (m_MoveFlag == true)
+        {
+            //入っている人間が　0人以下
+            if(home.GetHumanValue() <= 0)
+            {
+
+                //入っていく方の動きに変更
+                RondomHomeInInit();
+
+            }
+            else
+            {
+                home.GainHuman(1);
+
+                ActiveMove_ = ActiveMove.Move;
+            }
+        }
+    }
     //Pattern１
     public override void Move()
     {
+        
         //入るほうの処理
         if (!m_MoveFlag)
         {
-            Mytransform.DOMove(new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), MoveTime)
-                .SetDelay(MyNumber*3)
+            Mytransform.DOMove(endValue: new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), duration: MoveTime)
+                .SetEase(Ease.Linear)
                 .OnComplete(() => End());
         }
         //出る方の処理
         else
         {
-            Mytransform.DOMove(new Vector3(Mytransform.position.x + MoveAngle_.x, Mytransform.position.y + MoveAngle_.y, Mytransform.position.z + MoveAngle_.z), MoveTime)
-                .SetDelay(MyNumber * 3)
-                .OnComplete(() => End());
+            Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LenthValue), Mytransform.position.y +( MoveAngle_.y * LenthValue), Mytransform.position.z + (MoveAngle_.z * LenthValue)), duration: MoveTime)
+                .SetEase(Ease.Linear)
+                ;
         }
         //Debug.Log("Move実行");
     }
@@ -258,6 +272,11 @@ public class MovePattern : Pattern
             .OnComplete(() => End() );
 
         //Debug.Log("Move2実行");
+    }
+    //自分の番号
+    public int GetMyNumber()
+    {
+        return MyNumber;
     }
     //終了処理
     public void End()

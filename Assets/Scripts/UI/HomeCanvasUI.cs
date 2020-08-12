@@ -37,12 +37,11 @@ public class HomeCanvasUI : MonoBehaviour
     }
 
     //人間カウンター文字セット
-    public void SetHumanText(int humanCount, System.Action callback)
+    public void SetHumanText(int humanCount)
     {
         StopAllCoroutines();
         StartCoroutine(HumanCounterAnimation(humanCount, ()=> {
             Debug.Log("カウント終了");
-            callback();
         }));
     }
 
