@@ -243,7 +243,7 @@ public class MovePattern : Pattern
         if (m_MoveFlag == true)
         {
             //入っている人間が　0人以下
-            if(home.GetHumanValue() - Human <= 0)
+            if(home.GetHumanValue() - Human < 0)
             {
 
                 //入っていく方の動きに変更
