@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private readonly float limitTime = 60;
     private float timeDelta = 0;
 
+    private int currentRound = 1;
+
     public enum State
     {
         Idle,
@@ -41,8 +43,14 @@ public class GameManager : MonoBehaviour
         SetState(State.Game);
         ResultUI.instance.ShowResultPanel(false);
         //制限時間初期化
-        timeDelta = limitTime;
-        GameUI.instance.ShowTimer(true);
+        //timeDelta = limitTime;
+
+        //人数カウントラベル非表示
+        HomeCanvasUI.instance.ShowHumanText(false);
+
+        //ラウンド表記
+        GameUI.instance.ShowRoundLabel(true);
+        //GameUI.instance.ShowTimer(true);
 
         //キャラクターマネージャー初期化
         StartCoroutine(CharactorManager.Instance.InitializeCharacterManager());
@@ -81,6 +89,7 @@ public class GameManager : MonoBehaviour
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /*
     private void TimerUpdate()
     {
         timeDelta -= Time.deltaTime;
@@ -97,6 +106,7 @@ public class GameManager : MonoBehaviour
             ShowResult();
         }
     }
+    */
 
 
 

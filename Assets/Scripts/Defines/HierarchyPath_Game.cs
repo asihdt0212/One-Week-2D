@@ -11,7 +11,7 @@
 	public struct GameUICanvas
 	{
 		public const string Root = "GameUICanvas";
-		public const string TimerLabel = "GameUICanvas/TimerLabel";
+		public const string RoundLabel = "GameUICanvas/RoundLabel";
 		public const string AnswerButtonParent = "GameUICanvas/AnswerButtonParent";
 		public const string AnswerButtonParentButton = "GameUICanvas/AnswerButtonParent/Button";
 		public const string AnswerButtonParentButtonText = "GameUICanvas/AnswerButtonParent/Button/Text";
@@ -108,12 +108,6 @@
 		public const string Root = "HomeCanvas";
 		public const string HomeHumanText = "HomeCanvas/HomeHumanText";
 	}
-	public struct NCMB
-	{
-		public const string Root = "NCMB";
-		public const string NCMBManager = "NCMB/NCMBManager";
-		public const string NCMBSettings = "NCMB/NCMBSettings";
-	}
 	public struct RankingManager
 	{
 		public const string Root = "RankingManager";
@@ -122,5 +116,13 @@
 	public struct UserDataManager
 	{
 		public const string Root = "UserDataManager";
+	}
+	public struct NCMBManager
+	{
+		public const string Root = "NCMBManager";
+	}
+	public struct NCMBSettings
+	{
+		public const string Root = "NCMBSettings";
 	}
 }

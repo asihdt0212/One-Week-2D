@@ -82,7 +82,7 @@ public class ResultUI : MonoBehaviour
         if (show == true) 
         {
             //タイマー非表示
-            GameUI.instance.ShowTimer(false);
+            //GameUI.instance.ShowTimer(false);
 
             //ランキング表示
             RankingManager.instance.ShowRanking(true);

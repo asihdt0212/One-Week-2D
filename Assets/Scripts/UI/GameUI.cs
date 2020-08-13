@@ -8,7 +8,7 @@ using static UnityEngine.GameObject;
 public class GameUI : MonoBehaviour
 {
     public static GameUI instance;
-    private Text timerLabel;
+    private Text roundLabel;
 
     private Button[] answerButtons;
 
@@ -30,7 +30,7 @@ public class GameUI : MonoBehaviour
     private void InitUI()
     {
         //オブジェクト取得
-        timerLabel = Find(HierarchyPath_Game.GameUICanvas.TimerLabel).GetComponent<Text>();
+        roundLabel = Find(HierarchyPath_Game.GameUICanvas.RoundLabel).GetComponent<Text>();
         var answerButtonParent = Find(HierarchyPath_Game.GameUICanvas.AnswerButtonParent).transform;
         answerButtons = new Button[answerButtonParent.childCount];
 
@@ -47,16 +47,17 @@ public class GameUI : MonoBehaviour
 
     }
 
-    //タイマー表記更新
-    public void TimerUpdate(float value)
+    //ラウンド表記更新
+    public void SetRoundText(int value)
     {
-        timerLabel.text = Mathf.Round(value).ToString();
+        roundLabel.text = $"Round {value}";
+        //roundLabel.text = Mathf.Round(value).ToString();
     }
 
     //タイマー表示切替
-    public void ShowTimer(bool show)
+    public void ShowRoundLabel(bool show)
     {
-        timerLabel.gameObject.SetActive(show);
+        roundLabel.gameObject.SetActive(show);
     }
 
 
