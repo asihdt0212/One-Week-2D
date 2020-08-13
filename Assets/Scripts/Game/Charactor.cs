@@ -62,6 +62,7 @@ public class Charactor : MonoBehaviour
             //ずらしの値を生成
             Vector3 OffSet = this.transform.localScale*2;
             OffSet.y = 0.0f;
+            OffSet.z = 0.0f;
 
             //偶数の時 
             if ((i % 2) == 0){

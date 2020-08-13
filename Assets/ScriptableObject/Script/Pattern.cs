@@ -99,7 +99,7 @@ public class MovePattern : Pattern
 
         //移動させるTransformデータ
         Mytransform = Transform;
-
+        
         //家データ
         TargetObject = TargetObj;
 
@@ -159,6 +159,7 @@ public class MovePattern : Pattern
             //ターゲット（家）の位置を入れる。
             Mytransform.position = TargetObject.transform.position;
         }
+        Mytransform.position = new Vector3(Mytransform.position.x, Mytransform.position.y, 0.0f);
     }
 
     //ベースの座標から調整した座標を返す
