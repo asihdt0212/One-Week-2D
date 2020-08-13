@@ -43,7 +43,8 @@ public class CharactorManager : Singleton<CharactorManager>
     }
     List<CreatePatternType> CreatePatternType_ = new List<CreatePatternType>();
 
-    void InitializeCharacterManager()
+    //初期化
+    public void InitializeCharacterManager()
     {
         ////動きの仮実装
         //リスト初期化
@@ -120,7 +121,7 @@ public class CharactorManager : Singleton<CharactorManager>
 
     void Start()
     {
-        InitializeCharacterManager();
+        //InitializeCharacterManager();
     }
 
     void CreateCharacter(int i)

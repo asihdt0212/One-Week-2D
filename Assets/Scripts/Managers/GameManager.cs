@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         //制限時間初期化
         timeDelta = limitTime;
         GameUI.instance.ShowTimer(true);
+
+        CharactorManager.Instance.InitializeCharacterManager();
     }
 
     private void Update()
