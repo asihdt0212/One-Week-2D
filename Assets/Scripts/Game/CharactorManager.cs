@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CharactorManager : Singleton<CharactorManager>
 {
@@ -190,7 +189,7 @@ public class CharactorManager : Singleton<CharactorManager>
                 break;
         }
         //人間に人数をランダムで入れる
-        int R_humanValue = Random.Range(1, 3);
+        int R_humanValue = Random.Range(1, 4);
 
         Debug.Log($"生成された人数：{R_humanValue}");
 
@@ -213,6 +212,10 @@ public class CharactorManager : Singleton<CharactorManager>
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log($"今向かっている人間の数は:{GetHomeInCharactorCheck()}");
+        }
         G_Time += Time.deltaTime;
         
         //for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
@@ -231,6 +234,7 @@ public class CharactorManager : Singleton<CharactorManager>
                         //出るか入るかどちらのフラグが立っているかのチェック
                         if (ListPattern[i].m_MoveFlag)
                         {
+                            
                             //人間が家にいるかチェック
                             ListPattern[i].HouseHumanCheck(Home_);
                         }
@@ -322,7 +326,7 @@ public class CharactorManager : Singleton<CharactorManager>
     public int GetHomeInCharactorCheck()
     {
         //return値の格納変数を用意//家にいる人数分を入れる
-        int TotalHumanValue = Home_.GetHumanValue(); 
+        int TotalHumanValue = 0; 
 
         //今移動中で家に入ろうとしているのキャラを入れる変数
         int MoveCharactorValue = 0;
@@ -330,12 +334,15 @@ public class CharactorManager : Singleton<CharactorManager>
         //今家に入ろうと動いているキャラを取得
         foreach(var L_Pattern in ListPattern)
         {
-            if (L_Pattern.GetActiveMove() == Pattern.ActiveMove.Move || L_Pattern.m_MoveFlag == false)
+            if (L_Pattern.GetActiveMove() == Pattern.ActiveMove.Move && L_Pattern.m_MoveFlag == false)
             {
                 //人間分かううんとする。
                 MoveCharactorValue+= L_Pattern.Human;
             }
         }
+        //カウント分+
+        //Debug.Log(MoveCharactorValue);
+        TotalHumanValue += MoveCharactorValue;
 
         return TotalHumanValue;
     }

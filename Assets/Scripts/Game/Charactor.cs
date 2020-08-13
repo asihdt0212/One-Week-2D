@@ -17,6 +17,8 @@ public class Charactor : MonoBehaviour
     List<Sprite> CharactorSprite;
     private SpriteRenderer _renderer = default;
 
+    //生成したゲームオブジェクトの一時保存先
+    List<GameObject> CreateObjArray = new List<GameObject>();
 
     //初期化
     public void Init()
@@ -48,9 +50,12 @@ public class Charactor : MonoBehaviour
     //人数分画像を生成。
     public void CreateCharacter(int CreateHumanvalue)
     {
-        for (int i = 1; i < CreateHumanvalue; i++)
+        //生成したゲームオブジェクトの一時保存先の初期化
+        CreateObjArray.Clear();
+
+        for (int i = 0; i < CreateHumanvalue - 1; i++)
         {
-            Debug.Log("実行");
+            Debug.Log("実行 "+ CreateHumanvalue);
             //自分の複製を作って
             GameObject CreateObj = Instantiate(this.gameObject) as GameObject;
 
@@ -70,9 +75,15 @@ public class Charactor : MonoBehaviour
                 CreateObj.transform.position -= OffSet * ((i / 2) + 1);
             }
 
-            //子データになる。
-            CreateObj.transform.parent = this.transform;
+            //一時保存
+            CreateObjArray.Add(CreateObj);
 
+        }
+        //保存した分
+        foreach(var SetObj in CreateObjArray)
+        {
+            //子データになる。
+            SetObj.transform.parent = transform;
         }
     }
     public void ChangeSprite(ChangeSpriteType spriteType)
