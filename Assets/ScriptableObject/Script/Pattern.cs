@@ -164,23 +164,25 @@ public class MovePattern : Pattern
     {
         Debug.Log("ランダムIN生成");
         //乱数でLeftかUpを決める
-        float RandomValue = Random.Range(0f, 1f)*10;
-
+        //float RandomValue = Random.Range(0f, 1f)*10;
+        int RandomValue = Random.Range(0, 10);
         //Left Downの選択
-        if(RandomValue > 5)
+        //if(RandomValue > 5)
+        if(RandomValue %2 == 0)
         {
             PatternType_ = Angle.Right;
         }
-        else if(RandomValue < 5)
+        //else if(RandomValue < 5)
+        else
         {
             PatternType_ = Angle.Down;
         }
-        else
-        {
-            //再帰でももう一で設定する。
-            RondomHomeInInit();
-            return;
-        }
+        //else
+        //{
+        //    //再帰でももう一で設定する。
+        //    RondomHomeInInit();
+        //    return;
+        //}
         //入る選択
         m_MoveFlag = false;
         //アクティブ状態を移動に変更
@@ -192,23 +194,25 @@ public class MovePattern : Pattern
         Debug.Log("ランダムOUT生成");
 
         //乱数でLeftかUpを決める
-        float RandomValue = Random.Range(0f, 1f) * 10;
-
+        //float RandomValue = Random.Range(0f, 1f) * 10;
+        int RandomValue = Random.Range(0, 10);
         //Left Upの選択
-        if (RandomValue > 5)
+        //if (RandomValue > 5)
+        if(RandomValue %2 == 0)
         {
             PatternType_ = Angle.Right;
         }
-        else if (RandomValue < 5)
+        //else if (RandomValue < 5)
+        else
         {
             PatternType_ = Angle.Up;
         }
-        else
-        {
-            //再帰でももう一で設定する。
-            RondomHomeOutInit();
-            return;
-        }
+        //else
+        //{
+        //    //再帰でももう一で設定する。
+        //    RondomHomeOutInit();
+        //    return;
+        //}
  
         //出る方
         m_MoveFlag = true;
