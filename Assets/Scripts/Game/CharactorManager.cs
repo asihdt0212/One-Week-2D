@@ -44,8 +44,16 @@ public class CharactorManager : Singleton<CharactorManager>
     List<CreatePatternType> CreatePatternType_ = new List<CreatePatternType>();
 
     //初期化
-    public void InitializeCharacterManager()
+    public IEnumerator InitializeCharacterManager()
     {
+        //生成済みのキャラクターオブジェクトなど全て消去
+        foreach(Transform _obj in this.transform)
+        {
+            Destroy(_obj.gameObject);
+        }
+
+        yield return null;
+
         ////動きの仮実装
         //リスト初期化
         ListPattern.Clear();
@@ -197,7 +205,8 @@ public class CharactorManager : Singleton<CharactorManager>
         //リストへ追加
         ListPattern.Add(M_Pattern);
         //親
-        CharactorObj.gameObject.transform.parent = this.transform;
+        CharactorObj.transform.SetParent(this.transform);
+        //CharactorObj.gameObject.transform.parent = this.transform;
     }
     
 
@@ -206,7 +215,8 @@ public class CharactorManager : Singleton<CharactorManager>
     {
         G_Time += Time.deltaTime;
         
-        for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
+        //for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
+        for(int i = 0; i < ListPattern.Count; i++)
         {
             //移動アップデート
 
