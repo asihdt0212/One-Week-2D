@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             case State.Game:
                 {
                     //タイマー
-                    TimerUpdate(); 
+                    //TimerUpdate(); 
                 }
                 break;
 
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     public void CheckAnswer(int answer)
     {
         int homeHumanCount = CharactorManager.Instance.GetHome().GetHumanValue() ;     //CharactorManagerのHome_から人間の数を取得する
-        /*HomeCanvasUI.instance.SetHumanText(homeHumanCount, () => {
+        HomeCanvasUI.instance.SetHumanText(homeHumanCount, () => {
             //カウントが終わったら正誤チェックをする
             if (answer == homeHumanCount)
             {
@@ -153,6 +153,6 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("ミス！");
             }
 
-        });*/
+        });
     }
 }
