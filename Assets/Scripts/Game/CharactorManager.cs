@@ -43,11 +43,8 @@ public class CharactorManager : Singleton<CharactorManager>
     }
     List<CreatePatternType> CreatePatternType_ = new List<CreatePatternType>();
 
-
-    // Start is called before the first frame update
-    void Start()
+    void InitializeCharacterManager()
     {
-
         ////動きの仮実装
         //リスト初期化
         ListPattern.Clear();
@@ -60,15 +57,15 @@ public class CharactorManager : Singleton<CharactorManager>
         G_Time = 0;
         //家データの作成
         Home_ = new Home(0);
+
         //ゲーム難易度の初期化?
         //ぐるぐるするなら、呼び出さないほうが良いかも?(上のnewで一応初期化は出来ていますが...)
         //SelectMode_.SelectModeInit();
         //ゲームの難易度を10へ設定
         SelectMode_.SetGameLevel(10);
 
-
         //ランダムにCreatePatternType_に成分を入れる。
-        for (int i = 0;i < SelectMode_.GetCreateMaxHumanValue(); i++)
+        for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
         {
             //キャラクターの行動種類のパターン変数を宣言
             CreatePatternType CreatePatternTypes;
@@ -77,120 +74,129 @@ public class CharactorManager : Singleton<CharactorManager>
             //float R_Value =  Random.Range(0f, 1f) * 59;
             int R_Value = Random.Range(0, System.Enum.GetValues(typeof(CreatePatternType)).Length);
             CreatePatternTypes = (CreatePatternType)R_Value;
-   /*
-            //乱数に応じて行動種類を選択
-            if (R_Value >= 0 && R_Value < 10)
-            {
-                CreatePatternTypes = CreatePatternType.RandomHomeInType;
-            }
-            else if (R_Value >= 10 && R_Value < 20)
-            {
-                CreatePatternTypes = CreatePatternType.RandomHomeOutType;
-            }
-            else if (R_Value >= 20 && R_Value < 30)
-            {
-                CreatePatternTypes = CreatePatternType.HomeInRightType;
-            }
-            else if (R_Value >= 30 && R_Value < 40)
-            {
-                CreatePatternTypes = CreatePatternType.HomeInDownType;
-            }
-            else if (R_Value >= 40 && R_Value < 50)
-            {
-                CreatePatternTypes = CreatePatternType.HomeOutRightType;
-            }
-            else if (R_Value >= 50 && R_Value < 60)
-            {
-                CreatePatternTypes = CreatePatternType.HomeOutUpType;
-            }
-            else
-            {
-                CreatePatternTypes = CreatePatternType.RandomHomeInType;
-            }
+            /*
+                     //乱数に応じて行動種類を選択
+                     if (R_Value >= 0 && R_Value < 10)
+                     {
+                         CreatePatternTypes = CreatePatternType.RandomHomeInType;
+                     }
+                     else if (R_Value >= 10 && R_Value < 20)
+                     {
+                         CreatePatternTypes = CreatePatternType.RandomHomeOutType;
+                     }
+                     else if (R_Value >= 20 && R_Value < 30)
+                     {
+                         CreatePatternTypes = CreatePatternType.HomeInRightType;
+                     }
+                     else if (R_Value >= 30 && R_Value < 40)
+                     {
+                         CreatePatternTypes = CreatePatternType.HomeInDownType;
+                     }
+                     else if (R_Value >= 40 && R_Value < 50)
+                     {
+                         CreatePatternTypes = CreatePatternType.HomeOutRightType;
+                     }
+                     else if (R_Value >= 50 && R_Value < 60)
+                     {
+                         CreatePatternTypes = CreatePatternType.HomeOutUpType;
+                     }
+                     else
+                     {
+                         CreatePatternTypes = CreatePatternType.RandomHomeInType;
+                     }
 
-    */
+             */
             //キャラクターのパターンを入れる
             CreatePatternType_.Add(CreatePatternTypes);
         }
 
-        
-        for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
+        //このゲームで使用する全パターンについて、人間（グループ）を生成する
+        //for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
+        for(int i = 0; i < CreatePatternType_.Count; i++)
         {
-            //空のオブジェクト生成
-            var CharactorObj = new GameObject();
-            CharactorObj.name = "CharactorObj";
-
-            //SpriteRendererをアタッチ
-            CharactorObj.AddComponent<SpriteRenderer>();
-            //Charactorをアタッチ＋初期化
-            CharactorObj.AddComponent<Charactor>().Init();
-            //オブジェクトの格納
-            ListCharaObj.Add(CharactorObj);
-
-            //Charactor Scriptをもらう
-            ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
-
-            //Patternと動くオブジェクトを設定
-            var M_Pattern = new MovePattern(i, CharactorObj.transform,TargetObj,SelectMode_.GetCharacterSppedValue());
-            
-            //Patternの設定
-            switch (CreatePatternType_[i])
-            {
-                case CreatePatternType.RandomHomeInType:
-
-                    //移動方向の決定
-                    M_Pattern.RondomHomeInInit();
-
-                    break;
-                case CreatePatternType.RandomHomeOutType:
-
-                    //移動方向の決定
-                    M_Pattern.RondomHomeOutInit();
-
-                    break;
-                case CreatePatternType.HomeInRightType:
-
-                    M_Pattern.HomeSelectInInit();
-
-                    break;
-                case CreatePatternType.HomeInDownType:
-
-                    M_Pattern.HomeSelectInInit();
-
-                    break;
-                case CreatePatternType.HomeOutRightType:
-
-                    M_Pattern.HomeSelectOutInit();
-
-                    break;
-                case CreatePatternType.HomeOutUpType:
-
-                    M_Pattern.HomeSelectOutInit();
-
-                    break;
-                default:
-                    break;
-            }
-            //人間に人数をランダムで入れる
-            int R_humanValue = Random.Range(1, 3);
-
-            Debug.Log(R_humanValue);
-
-            //人間のが数を入れる。
-            M_Pattern.Human = R_humanValue;
-            //数分　人間オブジェクを生成
-            ListCharactor[i].CreateCharacter(R_humanValue);
-
-            //移動方向の初期化
-            M_Pattern.MoveAngleInit();
-            
-            //リストへ追加
-            ListPattern.Add(M_Pattern);
-            //親
-            CharactorObj.gameObject.transform.parent= this.transform;
-
+            CreateCharacter(i);
         }
+    }
 
+    void Start()
+    {
+        InitializeCharacterManager();
+    }
+
+    void CreateCharacter(int i)
+    {
+        //空のオブジェクト生成
+        var CharactorObj = new GameObject();
+        CharactorObj.name = "CharactorObj";
+
+        //SpriteRendererをアタッチ
+        CharactorObj.AddComponent<SpriteRenderer>();
+        //Charactorをアタッチ＋初期化
+        CharactorObj.AddComponent<Charactor>().Init();
+        //オブジェクトの格納
+        ListCharaObj.Add(CharactorObj);
+
+        //Charactor Scriptをもらう
+        ListCharactor.Add(CharactorObj.GetComponent<Charactor>());
+
+        //Patternと動くオブジェクトを設定
+        var M_Pattern = new MovePattern(i, CharactorObj.transform, TargetObj, SelectMode_.GetCharacterSppedValue());
+
+        //Patternの設定
+        switch (CreatePatternType_[i])
+        {
+            case CreatePatternType.RandomHomeInType:
+
+                //移動方向の決定
+                M_Pattern.RondomHomeInInit();
+
+                break;
+            case CreatePatternType.RandomHomeOutType:
+
+                //移動方向の決定
+                M_Pattern.RondomHomeOutInit();
+
+                break;
+            case CreatePatternType.HomeInRightType:
+
+                M_Pattern.HomeSelectInInit();
+
+                break;
+            case CreatePatternType.HomeInDownType:
+
+                M_Pattern.HomeSelectInInit();
+
+                break;
+            case CreatePatternType.HomeOutRightType:
+
+                M_Pattern.HomeSelectOutInit();
+
+                break;
+            case CreatePatternType.HomeOutUpType:
+
+                M_Pattern.HomeSelectOutInit();
+
+                break;
+            default:
+                break;
+        }
+        //人間に人数をランダムで入れる
+        int R_humanValue = Random.Range(1, 3);
+
+        Debug.Log($"生成された人数：{R_humanValue}");
+
+        //人間のが数を入れる。
+        M_Pattern.Human = R_humanValue;
+        //数分　人間オブジェクを生成
+        ListCharactor[i].CreateCharacter(R_humanValue);
+
+        //移動方向の初期化
+        M_Pattern.MoveAngleInit();
+
+        //リストへ追加
+        ListPattern.Add(M_Pattern);
+        //親
+        CharactorObj.gameObject.transform.parent = this.transform;
     }
     
 
