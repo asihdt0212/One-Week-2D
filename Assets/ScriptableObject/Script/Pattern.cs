@@ -248,6 +248,8 @@ public class MovePattern : Pattern
 
                 //入っていく方の動きに変更
                 RondomHomeInInit();
+                //移動位置の変更
+                MoveAngleInit();
 
             }
             else

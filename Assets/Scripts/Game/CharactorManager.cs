@@ -326,7 +326,7 @@ public class CharactorManager : Singleton<CharactorManager>
     public int GetHomeInCharactorCheck()
     {
         //return値の格納変数を用意//家にいる人数分を入れる
-        int TotalHumanValue = 0; 
+        int TotalHumanValue = Home_.GetHumanValue(); 
 
         //今移動中で家に入ろうとしているのキャラを入れる変数
         int MoveCharactorValue = 0;
