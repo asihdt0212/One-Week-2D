@@ -12,6 +12,11 @@ public class GameUI : MonoBehaviour
 
     private Button[] answerButtons;
 
+    //正解表示時間
+    private float showClearSpan = 2.0f;
+    //ミス表示時間
+    private float showMissSpan = 2.0f;
+
     private void Awake()
     {
         if(instance == null)
@@ -85,6 +90,23 @@ public class GameUI : MonoBehaviour
 
         //答えチェック関数を呼び出す
         GameManager.instance.CheckAnswer(num);
+    }
+
+    //クリア時○とか表示、一定時間経ったら次のラウンドへ
+    public IEnumerator RoundClear(System.Action callback)
+    {
+        yield return new WaitForSeconds(showClearSpan);
+
+        callback();
+    }
+
+    //失敗時ミス表示、一定時間経ったらランキング表示
+    public IEnumerator FinishGame(System.Action callback)
+    {
+        yield return new WaitForSeconds(showMissSpan);
+
+
+        callback();
     }
 
 }

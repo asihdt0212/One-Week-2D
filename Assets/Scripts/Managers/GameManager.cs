@@ -32,12 +32,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void Start()
+    {
         //初期化
         InitializeGame();
     }
 
-     //初期化処理
+    //初期化処理
     public void InitializeGame()
     {
         SetState(State.Game);
@@ -49,6 +52,8 @@ public class GameManager : MonoBehaviour
         HomeCanvasUI.instance.ShowHumanText(false);
 
         //ラウンド表記
+        var data = UserDataManager.instance.GetUserData();
+        GameUI.instance.SetRoundText(data.currentRound);
         GameUI.instance.ShowRoundLabel(true);
         //GameUI.instance.ShowTimer(true);
 
@@ -156,12 +161,18 @@ public class GameManager : MonoBehaviour
             {
                 //正解
                 Debug.LogError("正解！");
+                StartCoroutine(GameUI.instance.RoundClear(()=> {
+                    //次のラウンドへ
+                    UserDataManager.instance.NextRound();
+                    InitializeGame();
+                }));
             }
             else
             {
                 //ミス ゲームオーバー
                 Debug.LogError("ミス！");
-                SetState(State.Result);
+                StartCoroutine(GameUI.instance.FinishGame(() => { SetState(State.Result);}));
+                //SetState(State.Result);
             }
 
         });

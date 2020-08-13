@@ -12,6 +12,7 @@ public class UserDataManager : MonoBehaviour
         public bool init;   //新規作成時にtrueに変更．
         public int score;
         public int highScore;
+        public int currentRound;
     }
 
     private UserData data = default;
@@ -38,11 +39,18 @@ public class UserDataManager : MonoBehaviour
         {
             data = new UserData();
             data.init = true;
+            //初期ラウンドを１と設定
+            data.currentRound = 1;
         }
     }
 
     public UserData GetUserData()
     {
         return data;
+    }
+
+    public void NextRound()
+    {
+        data.currentRound++;
     }
 }
