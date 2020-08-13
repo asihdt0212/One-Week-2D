@@ -74,9 +74,10 @@ public class CharactorManager : Singleton<CharactorManager>
             CreatePatternType CreatePatternTypes;
 
             //乱数を生成
-            float R_Value =  Random.Range(0f, 1f) * 59;
-    
-
+            //float R_Value =  Random.Range(0f, 1f) * 59;
+            int R_Value = Random.Range(0, System.Enum.GetValues(typeof(CreatePatternType)).Length);
+            CreatePatternTypes = (CreatePatternType)R_Value;
+   /*
             //乱数に応じて行動種類を選択
             if (R_Value >= 0 && R_Value < 10)
             {
@@ -106,6 +107,8 @@ public class CharactorManager : Singleton<CharactorManager>
             {
                 CreatePatternTypes = CreatePatternType.RandomHomeInType;
             }
+
+    */
             //キャラクターのパターンを入れる
             CreatePatternType_.Add(CreatePatternTypes);
         }
@@ -195,6 +198,7 @@ public class CharactorManager : Singleton<CharactorManager>
     void Update()
     {
         G_Time += Time.deltaTime;
+        
         for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
         {
             //移動アップデート
@@ -287,7 +291,7 @@ public class CharactorManager : Singleton<CharactorManager>
             
         }
         
-            Debug.Log(Home_.GetHumanValue());
+            //Debug.Log(Home_.GetHumanValue());
         
     }
 
