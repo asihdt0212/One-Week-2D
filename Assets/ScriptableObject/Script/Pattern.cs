@@ -89,7 +89,7 @@ public class MovePattern : Pattern
     private Angle PatternType_ = Angle.Up;
     private Vector3 MoveAngle_ = Vector3.zero;
     //ターゲットから離れている長さ
-    const float LenthValue = 10.0f;
+    const float LengthValue = 10.0f;
     //何番目か
     private int MyNumber = 0;
     public MovePattern(int Number,Transform Transform ,GameObject TargetObj,float SetMoveTime)
@@ -148,9 +148,10 @@ public class MovePattern : Pattern
                     Debug.Log(M_Angle.Key+ "発見" + FirstPosi);
                 }
             }
-          
+
             //オブジェクトの位置を変える
-            Mytransform.position = TargetObject.transform.position + (FirstPosi* LenthValue);
+            Mytransform.position = GetObjPosition(TargetObject.transform.position, FirstPosi, LengthValue);
+            //Mytransform.position = TargetObject.transform.position + (FirstPosi* LengthValue);
   
         }
         else
@@ -159,6 +160,13 @@ public class MovePattern : Pattern
             Mytransform.position = TargetObject.transform.position;
         }
     }
+
+    //ベースの座標から調整した座標を返す
+    private Vector3 GetObjPosition(Vector3 basePos, Vector3 firstPosi, float lengthValue)
+    {
+        return basePos + (firstPosi * lengthValue);
+    }
+
     //入る方向Left設定
     public void RondomHomeInInit()
     {
@@ -265,7 +273,7 @@ public class MovePattern : Pattern
         //出る方の処理
         else
         {
-            Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LenthValue), Mytransform.position.y + (MoveAngle_.y * LenthValue), Mytransform.position.z + (MoveAngle_.z * LenthValue)), duration: MoveTime)
+            Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LengthValue), Mytransform.position.y + (MoveAngle_.y * LengthValue), Mytransform.position.z + (MoveAngle_.z * LengthValue)), duration: MoveTime)
                 .SetEase(Ease.Linear)
                 .OnComplete(() => End());
                 
