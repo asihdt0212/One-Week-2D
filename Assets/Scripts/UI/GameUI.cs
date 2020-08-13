@@ -42,7 +42,7 @@ public class GameUI : MonoBehaviour
             answerButtons[i].transform.GetChild(0).GetComponent<Text>().text = i.ToString();
             answerButtons[i].onClick.RemoveAllListeners();
             answerButtons[i].onClick.AddListener(() => { Answer(num); });
-            answerButtons[i].enabled = false;
+            answerButtons[i].interactable = false;
         }
 
     }
@@ -66,7 +66,7 @@ public class GameUI : MonoBehaviour
         //解答ボタン有効に
         foreach (var b in answerButtons)
         {
-            b.enabled = true;
+            b.interactable = true;
         }
     }
 
@@ -79,7 +79,7 @@ public class GameUI : MonoBehaviour
         //解答ボタン無効に
         foreach(var b in answerButtons)
         {
-            b.enabled = false;
+            b.interactable = false;
         }
 
         //答えチェック関数を呼び出す
