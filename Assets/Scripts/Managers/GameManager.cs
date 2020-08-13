@@ -149,8 +149,9 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                //ミス タイム減らす？
+                //ミス ゲームオーバー
                 Debug.LogError("ミス！");
+                SetState(State.Result);
             }
 
         });

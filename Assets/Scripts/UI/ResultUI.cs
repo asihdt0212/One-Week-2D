@@ -34,15 +34,15 @@ public class ResultUI : MonoBehaviour
         resultPanel = Find(HierarchyPath_Game.ResultUICanvas.ResultPanel).gameObject;
         retryButton = Find(HierarchyPath_Game.ResultUICanvas.ResultPanelRetryButton).AddComponent<Button>();
         titleButton = Find(HierarchyPath_Game.ResultUICanvas.ResultPanelTitleButton).AddComponent<Button>();
-        rankingButton = Find(HierarchyPath_Game.ResultUICanvas.ResultPanelRankingButton).AddComponent<Button>();
+        //rankingButton = Find(HierarchyPath_Game.ResultUICanvas.ResultPanelRankingButton).AddComponent<Button>();
 
         //ボタン設定
         retryButton.onClick.RemoveAllListeners();
         retryButton.onClick.AddListener(() => { StartCoroutine(Retry()); });
         titleButton.onClick.RemoveAllListeners();
         titleButton.onClick.AddListener(() => { StartCoroutine(Title()); });
-        rankingButton.onClick.RemoveAllListeners();
-        rankingButton.onClick.AddListener(() => { StartCoroutine(Ranking()); });
+        //rankingButton.onClick.RemoveAllListeners();
+        //rankingButton.onClick.AddListener(() => { StartCoroutine(Ranking()); });
 
         //非表示
         resultPanel.SetActive(false);
@@ -83,6 +83,9 @@ public class ResultUI : MonoBehaviour
         {
             //タイマー非表示
             GameUI.instance.ShowTimer(false);
+
+            //ランキング表示
+            RankingManager.instance.ShowRanking(true);
         }
     }
 }
