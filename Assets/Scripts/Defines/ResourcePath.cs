@@ -34,6 +34,12 @@ public static partial class Define
 		public readonly static string Audio_雑魚に構うなっ = "Sound/BGM/ReoMusic/雑魚に構うなっ";
 		public readonly static string Audio_雪国の大人たち1 = "Sound/BGM/ReoMusic/雪国の大人たち (1)";
 		public readonly static string Audio_雪国の大人たち = "Sound/BGM/ReoMusic/雪国の大人たち";
+		public readonly static string Audio_SEClear = "Sound/SE/SE_Clear";
+		public readonly static string Audio_SECorrect = "Sound/SE/SE_Correct";
+		public readonly static string Audio_SEIncorrect = "Sound/SE/SE_Incorrect";
+		public readonly static string Audio_SEResult = "Sound/SE/SE_Result";
+		public readonly static string Audio_SERound = "Sound/SE/SE_Round";
+		public readonly static string Audio_SESceneSwitch = "Sound/SE/SE_SceneSwitch";
 		public readonly static string Text_利用規約 = "Sound/SE/KomoriSE/利用規約";
 		public readonly static string Audio_Ikkyusan = "Sound/SE/KomoriSE/anime01/anime01/Ikkyu_san";
 		public readonly static string Audio_adventure = "Sound/SE/KomoriSE/anime01/anime01/adventure";
