@@ -17,4 +17,10 @@ public class TitleManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void Start()
+    {
+        //データ初期化
+        UserDataManager.instance.ResetData();
+    }
 }

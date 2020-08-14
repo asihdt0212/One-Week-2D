@@ -54,6 +54,8 @@ public class ResultUI : MonoBehaviour
     {
         yield return null;
 
+        //データ初期化
+        UserDataManager.instance.ResetData();
         GameManager.instance.InitializeGame();
     }
 
