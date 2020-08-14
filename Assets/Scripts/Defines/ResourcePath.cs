@@ -3,13 +3,15 @@ public static partial class Define
 {
 		public readonly static string Texture_308 = "308";
 		public readonly static string Asset_DOTweenSettings = "DOTweenSettings";
-		public readonly static string Texture_立体的な家の無料アイコン素材2 = "立体的な家の無料アイコン素材 2";
+		public readonly static string Texture_house = "house";
 		public readonly static string Prefab_CharactorManager = "Prefab/Game/CharactorManager";
 		public readonly static string Prefab_Home = "Prefab/Game/Home";
 		public readonly static string Prefab_GameUICanvas = "Prefab/UI/Canvas/GameUICanvas";
+		public readonly static string Prefab_HomeCanvas = "Prefab/UI/Canvas/HomeCanvas";
 		public readonly static string Prefab_RankingUICanvas = "Prefab/UI/Canvas/RankingUICanvas";
 		public readonly static string Prefab_ResultUICanvas = "Prefab/UI/Canvas/ResultUICanvas";
 		public readonly static string Prefab_TitleUICanvas = "Prefab/UI/Canvas/TitleUICanvas";
+		public readonly static string Audio_BGMGame = "Sound/BGM/BGM_Game";
 		public readonly static string Audio_あちゃー = "Sound/BGM/ReoMusic/あちゃー";
 		public readonly static string Audio_いざ戦場へ = "Sound/BGM/ReoMusic/いざ戦場へ";
 		public readonly static string Audio_エンシェントテクニカ = "Sound/BGM/ReoMusic/エンシェントテクニカ";
@@ -33,6 +35,7 @@ public static partial class Define
 		public readonly static string Audio_雪国の大人たち1 = "Sound/BGM/ReoMusic/雪国の大人たち (1)";
 		public readonly static string Audio_雪国の大人たち = "Sound/BGM/ReoMusic/雪国の大人たち";
 		public readonly static string Text_利用規約 = "Sound/SE/KomoriSE/利用規約";
+		public readonly static string Audio_Ikkyusan = "Sound/SE/KomoriSE/anime01/anime01/Ikkyu_san";
 		public readonly static string Audio_adventure = "Sound/SE/KomoriSE/anime01/anime01/adventure";
 		public readonly static string Audio_badend1 = "Sound/SE/KomoriSE/anime01/anime01/badend1";
 		public readonly static string Audio_blackout1 = "Sound/SE/KomoriSE/anime01/anime01/blackout1";
@@ -76,7 +79,6 @@ public static partial class Define
 		public readonly static string Audio_hiding2 = "Sound/SE/KomoriSE/anime01/anime01/hiding2";
 		public readonly static string Audio_hiding3 = "Sound/SE/KomoriSE/anime01/anime01/hiding3";
 		public readonly static string Audio_hurryup = "Sound/SE/KomoriSE/anime01/anime01/hurry_up";
-		public readonly static string Audio_Ikkyusan = "Sound/SE/KomoriSE/anime01/anime01/Ikkyu_san";
 		public readonly static string Audio_japanimation1 = "Sound/SE/KomoriSE/anime01/anime01/japanimation1";
 		public readonly static string Audio_limp = "Sound/SE/KomoriSE/anime01/anime01/limp";
 		public readonly static string Audio_lostmemory = "Sound/SE/KomoriSE/anime01/anime01/lost_memory";
@@ -152,6 +154,7 @@ public static partial class Define
 		public readonly static string Audio_swish21 = "Sound/SE/KomoriSE/attack01/attack01/swish2_1";
 		public readonly static string Audio_swish22 = "Sound/SE/KomoriSE/attack01/attack01/swish2_2";
 		public readonly static string Audio_swish23 = "Sound/SE/KomoriSE/attack01/attack01/swish2_3";
+		public readonly static string Audio_Japanesetoilet1 = "Sound/SE/KomoriSE/daily01/daily01/Japanese_toilet1";
 		public readonly static string Audio_bath1 = "Sound/SE/KomoriSE/daily01/daily01/bath1";
 		public readonly static string Audio_bath2 = "Sound/SE/KomoriSE/daily01/daily01/bath2";
 		public readonly static string Audio_bath3 = "Sound/SE/KomoriSE/daily01/daily01/bath3";
@@ -180,18 +183,17 @@ public static partial class Define
 		public readonly static string Audio_flushinginatoilet = "Sound/SE/KomoriSE/daily01/daily01/flushing_in_a_toilet";
 		public readonly static string Audio_glassrolling = "Sound/SE/KomoriSE/daily01/daily01/glass_rolling";
 		public readonly static string Audio_intoabath = "Sound/SE/KomoriSE/daily01/daily01/into_a_bath";
-		public readonly static string Audio_Japanesetoilet1 = "Sound/SE/KomoriSE/daily01/daily01/Japanese_toilet1";
 		public readonly static string Audio_kickingwater = "Sound/SE/KomoriSE/daily01/daily01/kicking_water";
 		public readonly static string Audio_knockedinabathroom1 = "Sound/SE/KomoriSE/daily01/daily01/knocked_in_a_bathroom1";
 		public readonly static string Audio_knockedinabathroom2 = "Sound/SE/KomoriSE/daily01/daily01/knocked_in_a_bathroom2";
 		public readonly static string Audio_knockedinabathroom3 = "Sound/SE/KomoriSE/daily01/daily01/knocked_in_a_bathroom3";
+		public readonly static string Audio_knockingawoodendoor1 = "Sound/SE/KomoriSE/daily01/daily01/knocking_a_wooden_door1";
+		public readonly static string Audio_knockingawoodendoor2 = "Sound/SE/KomoriSE/daily01/daily01/knocking_a_wooden_door2";
 		public readonly static string Audio_knockinganirondoor1 = "Sound/SE/KomoriSE/daily01/daily01/knocking_an_iron_door1";
 		public readonly static string Audio_knockinganirondoor2 = "Sound/SE/KomoriSE/daily01/daily01/knocking_an_iron_door2";
 		public readonly static string Audio_knockinganirondoor3 = "Sound/SE/KomoriSE/daily01/daily01/knocking_an_iron_door3";
 		public readonly static string Audio_knockinganirondoor4 = "Sound/SE/KomoriSE/daily01/daily01/knocking_an_iron_door4";
 		public readonly static string Audio_knockinganirondoor5 = "Sound/SE/KomoriSE/daily01/daily01/knocking_an_iron_door5";
-		public readonly static string Audio_knockingawoodendoor1 = "Sound/SE/KomoriSE/daily01/daily01/knocking_a_wooden_door1";
-		public readonly static string Audio_knockingawoodendoor2 = "Sound/SE/KomoriSE/daily01/daily01/knocking_a_wooden_door2";
 		public readonly static string Audio_letterbox = "Sound/SE/KomoriSE/daily01/daily01/letter_box";
 		public readonly static string Audio_lockingawoodendoor1 = "Sound/SE/KomoriSE/daily01/daily01/locking_a_wooden_door1";
 		public readonly static string Audio_lockingawoodendoor2 = "Sound/SE/KomoriSE/daily01/daily01/locking_a_wooden_door2";
@@ -219,10 +221,10 @@ public static partial class Define
 		public readonly static string Audio_shakingapetbottle = "Sound/SE/KomoriSE/daily01/daily01/shaking_a_petbottle";
 		public readonly static string Audio_shakingasmallbox = "Sound/SE/KomoriSE/daily01/daily01/shaking_a_small_box";
 		public readonly static string Audio_shower = "Sound/SE/KomoriSE/daily01/daily01/shower";
-		public readonly static string Audio_sprayer1 = "Sound/SE/KomoriSE/daily01/daily01/sprayer1";
-		public readonly static string Audio_sprayer2 = "Sound/SE/KomoriSE/daily01/daily01/sprayer2";
 		public readonly static string Audio_spraylong = "Sound/SE/KomoriSE/daily01/daily01/spray_long";
 		public readonly static string Audio_sprayshort = "Sound/SE/KomoriSE/daily01/daily01/spray_short";
+		public readonly static string Audio_sprayer1 = "Sound/SE/KomoriSE/daily01/daily01/sprayer1";
+		public readonly static string Audio_sprayer2 = "Sound/SE/KomoriSE/daily01/daily01/sprayer2";
 		public readonly static string Audio_tap1 = "Sound/SE/KomoriSE/daily01/daily01/tap1";
 		public readonly static string Audio_tap2 = "Sound/SE/KomoriSE/daily01/daily01/tap2";
 		public readonly static string Audio_tap3 = "Sound/SE/KomoriSE/daily01/daily01/tap3";
@@ -239,10 +241,10 @@ public static partial class Define
 		public readonly static string Audio_zipper1 = "Sound/SE/KomoriSE/daily01/daily01/zipper1";
 		public readonly static string Audio_zipper2 = "Sound/SE/KomoriSE/daily01/daily01/zipper2";
 		public readonly static string Audio_zipper3 = "Sound/SE/KomoriSE/daily01/daily01/zipper3";
+		public readonly static string Audio_aboxofmatches = "Sound/SE/KomoriSE/daily02/daily02/a_box_of_matches";
 		public readonly static string Audio_automaticpencil1 = "Sound/SE/KomoriSE/daily02/daily02/automatic_pencil1";
 		public readonly static string Audio_automaticpencil2 = "Sound/SE/KomoriSE/daily02/daily02/automatic_pencil2";
 		public readonly static string Audio_automaticpencil3 = "Sound/SE/KomoriSE/daily02/daily02/automatic_pencil3";
-		public readonly static string Audio_aboxofmatches = "Sound/SE/KomoriSE/daily02/daily02/a_box_of_matches";
 		public readonly static string Audio_calendar = "Sound/SE/KomoriSE/daily02/daily02/calendar";
 		public readonly static string Audio_closingadictionary = "Sound/SE/KomoriSE/daily02/daily02/closing_a_dictionary";
 		public readonly static string Audio_coins = "Sound/SE/KomoriSE/daily02/daily02/coins";
@@ -262,9 +264,9 @@ public static partial class Define
 		public readonly static string Audio_moneybox1 = "Sound/SE/KomoriSE/daily02/daily02/money_box1";
 		public readonly static string Audio_moneybox2 = "Sound/SE/KomoriSE/daily02/daily02/money_box2";
 		public readonly static string Audio_newspaper = "Sound/SE/KomoriSE/daily02/daily02/newspaper";
-		public readonly static string Audio_pens = "Sound/SE/KomoriSE/daily02/daily02/pens";
 		public readonly static string Audio_pencap1 = "Sound/SE/KomoriSE/daily02/daily02/pen_cap1";
 		public readonly static string Audio_pencap2 = "Sound/SE/KomoriSE/daily02/daily02/pen_cap2";
+		public readonly static string Audio_pens = "Sound/SE/KomoriSE/daily02/daily02/pens";
 		public readonly static string Audio_plasticumbrellarain1 = "Sound/SE/KomoriSE/daily02/daily02/plastic_umbrella_rain1";
 		public readonly static string Audio_plasticumbrellarain2 = "Sound/SE/KomoriSE/daily02/daily02/plastic_umbrella_rain2";
 		public readonly static string Audio_plasticumbrellarain3 = "Sound/SE/KomoriSE/daily02/daily02/plastic_umbrella_rain3";
@@ -411,9 +413,9 @@ public static partial class Define
 		public readonly static string Audio_flyinthehead = "Sound/SE/KomoriSE/horror01/horror01/fly_in_the_head";
 		public readonly static string Audio_footstepsofthepast = "Sound/SE/KomoriSE/horror01/horror01/footsteps_of the_past";
 		public readonly static string Audio_gainingweight = "Sound/SE/KomoriSE/horror01/horror01/gaining_weight";
-		public readonly static string Audio_ghosts = "Sound/SE/KomoriSE/horror01/horror01/ghosts";
 		public readonly static string Audio_ghostcalling = "Sound/SE/KomoriSE/horror01/horror01/ghost_calling";
 		public readonly static string Audio_ghostsigh = "Sound/SE/KomoriSE/horror01/horror01/ghost_sigh";
+		public readonly static string Audio_ghosts = "Sound/SE/KomoriSE/horror01/horror01/ghosts";
 		public readonly static string Audio_goingmad1 = "Sound/SE/KomoriSE/horror01/horror01/going_mad1";
 		public readonly static string Audio_goingmad2 = "Sound/SE/KomoriSE/horror01/horror01/going_mad2";
 		public readonly static string Audio_headache = "Sound/SE/KomoriSE/horror01/horror01/headache";
@@ -505,16 +507,16 @@ public static partial class Define
 		public readonly static string Audio_xxxharf = "Sound/SE/KomoriSE/horror02/horror02/xxxharf";
 		public readonly static string Audio_zombieeating1 = "Sound/SE/KomoriSE/horror02/horror02/zombie_eating1";
 		public readonly static string Audio_zombieeating2 = "Sound/SE/KomoriSE/horror02/horror02/zombie_eating2";
-		public readonly static string Audio_attackbell = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/attack_bell";
-		public readonly static string Audio_bell1 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/bell1";
-		public readonly static string Audio_bell2 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/bell2";
 		public readonly static string Audio_Buddalargebell = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Budda_large_bell";
 		public readonly static string Audio_Buddasmallbell = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Budda_small_bell";
 		public readonly static string Audio_Buddhismsutra1 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Buddhism_sutra1";
 		public readonly static string Audio_Buddhismsutra2 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Buddhism_sutra2";
-		public readonly static string Audio_callingwhistle = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/calling_whistle";
 		public readonly static string Audio_Chineseblade1 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Chinese_blade1";
 		public readonly static string Audio_Chineseblade2 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/Chinese_blade2";
+		public readonly static string Audio_attackbell = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/attack_bell";
+		public readonly static string Audio_bell1 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/bell1";
+		public readonly static string Audio_bell2 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/bell2";
+		public readonly static string Audio_callingwhistle = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/calling_whistle";
 		public readonly static string Audio_clappingtwice = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/clapping_twice";
 		public readonly static string Audio_cuttingwithakatana1 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/cutting_with_a_katana1";
 		public readonly static string Audio_cuttingwithakatana2 = "Sound/SE/KomoriSE/jidaigeki01/jidaigeki01/cutting_with_a_katana2";
@@ -671,6 +673,8 @@ public static partial class Define
 		public readonly static string Audio_liftingaplasticbag = "Sound/SE/KomoriSE/putting01/putting01/lifting_a_plastic_bag";
 		public readonly static string Audio_liftingkeys = "Sound/SE/KomoriSE/putting01/putting01/lifting_keys";
 		public readonly static string Audio_putting1 = "Sound/SE/KomoriSE/putting01/putting01/putting1";
+		public readonly static string Audio_puttingaCDcase1 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_CD_case1";
+		public readonly static string Audio_puttingaCDcase2 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_CD_case2";
 		public readonly static string Audio_puttingabook1 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_book1";
 		public readonly static string Audio_puttingabook2 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_book2";
 		public readonly static string Audio_puttingabook3 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_book3";
@@ -678,8 +682,6 @@ public static partial class Define
 		public readonly static string Audio_puttingabottle1 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_bottle1";
 		public readonly static string Audio_puttingabottle2 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_bottle2";
 		public readonly static string Audio_puttingabox = "Sound/SE/KomoriSE/putting01/putting01/putting_a_box";
-		public readonly static string Audio_puttingaCDcase1 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_CD_case1";
-		public readonly static string Audio_puttingaCDcase2 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_CD_case2";
 		public readonly static string Audio_puttingacup1 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_cup1";
 		public readonly static string Audio_puttingacup2 = "Sound/SE/KomoriSE/putting01/putting01/putting_a_cup2";
 		public readonly static string Audio_puttingafryingpan = "Sound/SE/KomoriSE/putting01/putting01/putting_a_frying_pan";
@@ -707,4 +709,5 @@ public static partial class Define
 		public readonly static string Audio_puttingontablecloth = "Sound/SE/KomoriSE/putting01/putting01/putting_on_tablecloth";
 		public readonly static string Audio_puttingscissors = "Sound/SE/KomoriSE/putting01/putting01/putting_scissors";
 		public readonly static string Audio_puttingshoes = "Sound/SE/KomoriSE/putting01/putting01/putting_shoes";
+		public readonly static string Texture_backGround = "Sprites/backGround";
 }

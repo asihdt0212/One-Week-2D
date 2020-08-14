@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     {
         //初期化
         InitializeGame();
+
+        //BGM
+        SoundManager.Instance.SoundBGMPlay(SoundDefine.BGM_GAME.key);
     }
 
     //初期化処理
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         //キャラクターマネージャー初期化
         StartCoroutine(CharactorManager.Instance.InitializeCharacterManager());
+
     }
 
     private void Update()

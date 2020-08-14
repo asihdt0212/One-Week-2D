@@ -16,6 +16,9 @@ public class HomeCanvasUI : MonoBehaviour
     private float textJumpForce = .5f;
     private int textJumpTime = 1;
 
+    //数え上げ終えた時のスケール
+    private readonly float bigScale = 2.0f;
+
     private void Awake()
     {
         if(instance  == null)
@@ -55,6 +58,8 @@ public class HomeCanvasUI : MonoBehaviour
     private IEnumerator HumanCounterAnimation(int humanCount, System.Action callback)
     {
         homeHumanText.text = "";
+        homeHumanText.transform.localScale = Vector3.one;
+        homeHumanText.color = Color.white;
         ShowHumanText(true);
         int counter = 0;
         while (humanCount > 0)
@@ -63,9 +68,23 @@ public class HomeCanvasUI : MonoBehaviour
             humanCount--;
             homeHumanText.text = counter.ToString();
             homeHumanText.transform.DOJump(homeHumanText.transform.position, textJumpForce, textJumpTime, countSpan, false);
+
+            if(humanCount != 0)
+            {
+                //カウント中
+                SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT.key);
+            }
+            else
+            {
+                //最後の数字を数え終えた、文字拡大などで演出入れるとよし
+                SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT_END.key);
+                homeHumanText.transform.DOScale(Vector3.one * bigScale, .5f);
+                homeHumanText.color = Color.red;
+            }
+
             yield return new WaitForSeconds(countSpan);
         }
-        
+
         callback();
     }
 }

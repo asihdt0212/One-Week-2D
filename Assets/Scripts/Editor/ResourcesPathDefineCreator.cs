@@ -57,7 +57,7 @@ public static class ResourcesPathDefineCreator
     }
 
     //全リソースファイルパス取得
-    static IEnumerable<string> GetAllResourcesPath()
+    public static IEnumerable<string> GetAllResourcesPath()
     {
         foreach (var resourceDirectory in Directory.GetDirectories("Assets", "Resources", SearchOption.AllDirectories).Select(item => item.Replace("\\", "/")))
         {

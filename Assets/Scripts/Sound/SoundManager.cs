@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SoundDefine;
 
 public class  SoundManager : Singleton<SoundManager>
 {
@@ -11,6 +12,11 @@ public class  SoundManager : Singleton<SoundManager>
     SoundData SoundSEData_;
     SoundData SoundBGMData_;
 
+    public enum Kind
+    {
+        SE,
+        BGM,
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,16 @@ public class  SoundManager : Singleton<SoundManager>
 
         SoundBGMData_.LoadSoundData("Sound/BGM/ReoMusic/スペースコロニー", "BGM1");
         SoundSEData_.LoadSoundData(Define.Audio_地下アジト, "BGM2");
+
+        LoadSound(BGM_GAME, Kind.BGM);
+        LoadSound(SE_COUNT, Kind.SE);
+        LoadSound(SE_COUNT_END, Kind.SE);
+    }
+
+    void LoadSound(SoundInfo info, Kind kind)
+    {
+        if(kind == Kind.BGM) { SoundBGMData_.LoadSoundData(info.path, info.key); }
+        else { SoundSEData_.LoadSoundData(info.path, info.key); }
     }
     
     /// </書き足す所>
@@ -50,7 +66,7 @@ public class  SoundManager : Singleton<SoundManager>
 
         if (SoundData == null)
         {
-            Debug.LogError(KeyName+"の中身が"+SoundData+"です。（BGM）");
+            Debug.LogError(KeyName+"の中身が"+SoundData+"です。（SE）");
             return;
         }
 
@@ -66,7 +82,7 @@ public class  SoundManager : Singleton<SoundManager>
 
         if(SoundData == null)
         {
-            Debug.LogError(KeyName + "の中身が" + SoundData + "です。（SE）");
+            Debug.LogError(KeyName + "の中身が" + SoundData + "です。（BGM）");
             return;
         }
         //設定BGMの変更
