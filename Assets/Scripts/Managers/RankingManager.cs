@@ -23,6 +23,6 @@ public class RankingManager : MonoBehaviour
     public void ShowRanking(bool show)
     {
         var data = UserDataManager.instance.GetUserData();
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(data.score);
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(data.currentRound);
     }
 }
