@@ -716,4 +716,6 @@ public static partial class Define
 		public readonly static string Audio_puttingscissors = "Sound/SE/KomoriSE/putting01/putting01/putting_scissors";
 		public readonly static string Audio_puttingshoes = "Sound/SE/KomoriSE/putting01/putting01/putting_shoes";
 		public readonly static string Texture_backGround = "Sprites/backGround";
+		public readonly static string Texture_batsu = "Sprites/batsu";
+		public readonly static string Texture_maru = "Sprites/maru";
 }

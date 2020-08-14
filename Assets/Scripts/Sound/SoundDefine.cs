@@ -29,4 +29,13 @@ public static class SoundDefine
     //カウント最終SE
     public static readonly SoundInfo SE_COUNT_END
         = new SoundInfo("SE_COUNT_END", Define.Audio_surprise);
+
+    //正解SE
+    public static readonly SoundInfo SE_CORRECT
+        = new SoundInfo("SE_CORRECT", Define.Audio_SECorrect);
+
+    //ミスSE
+    public static readonly SoundInfo SE_INCORRECT
+        = new SoundInfo("SE_INCORRECT", Define.Audio_SEIncorrect);
+
 }

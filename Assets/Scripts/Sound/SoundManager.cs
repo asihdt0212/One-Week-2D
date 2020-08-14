@@ -28,6 +28,10 @@ public class  SoundManager : Singleton<SoundManager>
         //オーディオソースを追加;
         MyBGMAudioSource = this.gameObject.AddComponent<AudioSource>();
         MySEAudioSource = this.gameObject.AddComponent<AudioSource>();
+
+        //Loop設定
+        MyBGMAudioSource.loop = true;
+
         //Soundのロード
         LoadSoundResource();
 
@@ -46,9 +50,17 @@ public class  SoundManager : Singleton<SoundManager>
         SoundBGMData_.LoadSoundData("Sound/BGM/ReoMusic/スペースコロニー", "BGM1");
         SoundSEData_.LoadSoundData(Define.Audio_地下アジト, "BGM2");
 
+
+        //ゲームBGM
         LoadSound(BGM_GAME, Kind.BGM);
+        //カウントSE
         LoadSound(SE_COUNT, Kind.SE);
+        //ラストカウントSE
         LoadSound(SE_COUNT_END, Kind.SE);
+        //正解SE
+        LoadSound(SE_CORRECT, Kind.SE);
+        //ミスSE
+        LoadSound(SE_INCORRECT, Kind.SE);
     }
 
     void LoadSound(SoundInfo info, Kind kind)
