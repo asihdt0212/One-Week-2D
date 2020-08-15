@@ -15,6 +15,8 @@ public class GameUI : MonoBehaviour
     private Image maruImage;
     private Image batsuImage;
 
+    private GameObject startLabel;
+
     //正解表示時間
     private float showClearSpan = 2.0f;
     //ミス表示時間
@@ -43,6 +45,8 @@ public class GameUI : MonoBehaviour
         answerButtons = new Button[answerButtonParent.childCount];
         maruImage = Find(HierarchyPath_Game.GameUICanvas.MaruImage).GetComponent<Image>();
         batsuImage = Find(HierarchyPath_Game.GameUICanvas.BatsuImage).GetComponent<Image>();
+        startLabel = Find(HierarchyPath_Game.GameUICanvas.StartLabel).gameObject;
+
 
         //ボタン設定
         for(int i = 0; i < answerButtons.Length; i++)
@@ -58,7 +62,7 @@ public class GameUI : MonoBehaviour
         //非表示
         maruImage.gameObject.SetActive(false);
         batsuImage.gameObject.SetActive(false);
-
+        startLabel.SetActive(false);
     }
 
     //ラウンド表記更新
@@ -122,4 +126,13 @@ public class GameUI : MonoBehaviour
         callback();
     }
 
+    //ゲーム開始時Start表示
+    public IEnumerator ShowStartLabel(float span)
+    {
+        SoundManager.Instance.SoundSEPlay(SoundDefine.SE_START.key);
+        startLabel.SetActive(true);
+        //SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT);
+        yield return new WaitForSeconds(span);
+        startLabel.SetActive(false);
+    }
 }

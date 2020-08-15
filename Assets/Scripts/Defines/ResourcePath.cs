@@ -40,6 +40,7 @@ public static partial class Define
 		public readonly static string Audio_SEResult = "Sound/SE/SE_Result";
 		public readonly static string Audio_SERound = "Sound/SE/SE_Round";
 		public readonly static string Audio_SESceneSwitch = "Sound/SE/SE_SceneSwitch";
+		public readonly static string Audio_SEStart = "Sound/SE/SE_Start";
 		public readonly static string Text_利用規約 = "Sound/SE/KomoriSE/利用規約";
 		public readonly static string Audio_Ikkyusan = "Sound/SE/KomoriSE/anime01/anime01/Ikkyu_san";
 		public readonly static string Audio_adventure = "Sound/SE/KomoriSE/anime01/anime01/adventure";

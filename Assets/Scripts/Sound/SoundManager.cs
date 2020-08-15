@@ -61,6 +61,8 @@ public class  SoundManager : Singleton<SoundManager>
         LoadSound(SE_CORRECT, Kind.SE);
         //ミスSE
         LoadSound(SE_INCORRECT, Kind.SE);
+        //スタートSE
+        LoadSound(SE_START, Kind.SE);
     }
 
     void LoadSound(SoundInfo info, Kind kind)

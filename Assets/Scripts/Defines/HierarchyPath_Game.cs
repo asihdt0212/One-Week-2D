@@ -106,6 +106,7 @@
 		public const string AnswerButtonParentButton9Text = "GameUICanvas/AnswerButtonParent/Button (9)/Text";
 		public const string MaruImage = "GameUICanvas/MaruImage";
 		public const string BatsuImage = "GameUICanvas/BatsuImage";
+		public const string StartLabel = "GameUICanvas/StartLabel";
 	}
 	public struct ResultUICanvas
 	{

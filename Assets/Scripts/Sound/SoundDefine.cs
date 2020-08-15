@@ -39,4 +39,7 @@ public static class SoundDefine
     public static readonly SoundInfo SE_INCORRECT
         = new SoundInfo("SE_INCORRECT", Define.Audio_SEIncorrect);
 
+    //スタートSE
+    public static readonly SoundInfo SE_START
+        = new SoundInfo("SE_START", Define.Audio_SEStart);
 }

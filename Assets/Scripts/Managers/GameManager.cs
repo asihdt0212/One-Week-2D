@@ -12,11 +12,15 @@ public class GameManager : MonoBehaviour
 
     private int currentRound = 1;
 
+    //ラウンドコール時間
+    private float roundCallDelay = 2.0f;
+
     public enum State
     {
         Idle,
-        Game,
-        Result,
+        RoundCall,      //ラウンドコール
+        Game,           //ゲーム開始　
+        Result,         //リザルト
     }
 
     [SerializeField, Header("ステート")]
@@ -46,7 +50,8 @@ public class GameManager : MonoBehaviour
     //初期化処理
     public void InitializeGame()
     {
-        SetState(State.Game);
+        //SetState(State.Game);
+        SetState(State.RoundCall);
         ResultUI.instance.ShowResultPanel(false);
         //制限時間初期化
         //timeDelta = limitTime;
@@ -55,13 +60,13 @@ public class GameManager : MonoBehaviour
         HomeCanvasUI.instance.ShowHumanText(false);
 
         //ラウンド表記
-        var data = UserDataManager.instance.GetUserData();
-        GameUI.instance.SetRoundText(data.currentRound);
-        GameUI.instance.ShowRoundLabel(true);
+        //var data = UserDataManager.instance.GetUserData();
+        //GameUI.instance.SetRoundText(data.currentRound);
+        //GameUI.instance.ShowRoundLabel(true);
         //GameUI.instance.ShowTimer(true);
 
         //キャラクターマネージャー初期化
-        StartCoroutine(CharactorManager.Instance.InitializeCharacterManager());
+        //StartCoroutine(CharactorManager.Instance.InitializeCharacterManager());
 
     }
 
@@ -72,6 +77,12 @@ public class GameManager : MonoBehaviour
             case State.Idle:
                 {
                     //待機中
+                }
+                break;
+
+            case State.RoundCall:
+                {
+                    //ラウンドコール　
                 }
                 break;
 
@@ -138,6 +149,13 @@ public class GameManager : MonoBehaviour
                 }
                 break;
 
+            case State.RoundCall:
+                {
+                    //ラウンドコール
+                    StartCoroutine(RoundCall());
+                }
+                break;
+
             case State.Game:
                 {
                     //ゲーム開始
@@ -153,7 +171,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator RoundCall()
+    {
+        //ラウンド表記
+        var data = UserDataManager.instance.GetUserData();
+        GameUI.instance.SetRoundText(data.currentRound);
+        GameUI.instance.ShowRoundLabel(true);
 
+        //Start表記
+        StartCoroutine(GameUI.instance.ShowStartLabel(roundCallDelay));
+
+        yield return new WaitForSeconds(roundCallDelay);
+
+        //キャラクターマネージャー初期化
+        StartCoroutine(CharactorManager.Instance.InitializeCharacterManager());
+        //ゲーム開始
+        SetState(State.Game);
+    }
 
     //解答チェック
     public void CheckAnswer(int answer)
