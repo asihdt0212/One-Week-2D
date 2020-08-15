@@ -20,7 +20,8 @@ public static class SoundDefine
     //これより以下は使用するサウンドについて定義
     //ゲーム中BGM
     public static readonly SoundInfo BGM_GAME
-        = new SoundInfo("BGM_GAME", Define.Audio_BGMGame);
+        = new SoundInfo("BGM_GAME", Define.Audio_FeelingCool);
+        //= new SoundInfo("BGM_GAME", Define.Audio_BGMGame);
 
     //カウントSE
     public static readonly SoundInfo SE_COUNT

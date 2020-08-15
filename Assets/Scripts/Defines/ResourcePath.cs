@@ -12,11 +12,12 @@ public static partial class Define
 		public readonly static string Prefab_ResultUICanvas = "Prefab/UI/Canvas/ResultUICanvas";
 		public readonly static string Prefab_TitleUICanvas = "Prefab/UI/Canvas/TitleUICanvas";
 		public readonly static string Audio_BGMGame = "Sound/BGM/BGM_Game";
+		public readonly static string Audio_FeelingCool = "Sound/BGM/ReoMusic/FeelingCool";
 		public readonly static string Audio_あちゃー = "Sound/BGM/ReoMusic/あちゃー";
 		public readonly static string Audio_いざ戦場へ = "Sound/BGM/ReoMusic/いざ戦場へ";
 		public readonly static string Audio_エンシェントテクニカ = "Sound/BGM/ReoMusic/エンシェントテクニカ";
 		public readonly static string Audio_ショット = "Sound/BGM/ReoMusic/ショット";
-		public readonly static string Audio_スペースコロニー = "Sound/BGM/ReoMusic/スペースコロニー";
+		public readonly static string Audio_スペースコロニー = "Sound/BGM/ReoMusic/スペースコロニー";
 		public readonly static string Audio_スーパームーン = "Sound/BGM/ReoMusic/スーパームーン";
 		public readonly static string Audio_パワーアップ = "Sound/BGM/ReoMusic/パワーアップ";
 		public readonly static string Audio_ホーミングMISSILE = "Sound/BGM/ReoMusic/ホーミングMISSILE";
@@ -28,7 +29,6 @@ public static partial class Define
 		public readonly static string Audio_未知の世界1 = "Sound/BGM/ReoMusic/未知の世界 (1)";
 		public readonly static string Audio_未知の世界 = "Sound/BGM/ReoMusic/未知の世界";
 		public readonly static string Audio_火星人の踊り = "Sound/BGM/ReoMusic/火星人の踊り";
-		public readonly static string Audio_爽やかな気分 = "Sound/BGM/ReoMusic/爽やかな気分";
 		public readonly static string Audio_落下 = "Sound/BGM/ReoMusic/落下";
 		public readonly static string Audio_被弾 = "Sound/BGM/ReoMusic/被弾";
 		public readonly static string Audio_雑魚に構うなっ = "Sound/BGM/ReoMusic/雑魚に構うなっ";
