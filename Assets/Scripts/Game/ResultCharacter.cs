@@ -8,9 +8,13 @@ public class ResultCharacter : Charactor
 
     protected List<GameObject> L_ResultCharaObj = new List<GameObject>();
 
+    private int ChnageSpriteCount = 0;
     //答えオブジェクトを生成(初期化段階で実行) 引数：家に入れる人間の最大数
     public void CreateAnswerObject(int MaxhumanValue,int ActiveValue)
     {
+        Init();
+
+        ChnageSpriteCount = 0;
         //初期化
         L_ResultCharaObj.Clear();
 
@@ -69,6 +73,11 @@ public class ResultCharacter : Charactor
             L_RCObj.transform.parent = this.transform;
             L_RCObj.SetActive(false);
         }
+
+        for(int i = 0; i < ActiveValue;i++)
+        {
+            L_ResultCharaObj[i].SetActive(true);
+        }
     }
     //答えオブジェクトのアクティブ状態をオンにする //引数：答えオブジェクトのオンにするオブジェクト数
     public void AnswerObjectActiveOn(int AnwerValue)
@@ -83,5 +92,24 @@ public class ResultCharacter : Charactor
         {
             L_ResultCharaObj[i].SetActive(true);
         }
+    }
+    //画像変更
+    public void ChangeSprite(ChangeSpriteType spriteType)
+    {
+        if (L_ResultCharaObj.Count <= ChnageSpriteCount)
+        {
+            Debug.LogError("配列参照エラーです。L_ResultCharaObj.Count " + L_ResultCharaObj.Count);
+            return;
+        }
+        if(CharactorSprite.Count <= (int)spriteType)
+        {
+            Debug.LogError("画像の配列参照エラーです。L_ResultCharaObj.Count " + CharactorSprite.Count);
+            return;
+        }
+        //this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)spriteType];
+        L_ResultCharaObj[ChnageSpriteCount].GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)spriteType];
+
+        ChnageSpriteCount++;
+
     }
 }

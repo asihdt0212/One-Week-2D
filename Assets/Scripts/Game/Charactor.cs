@@ -14,11 +14,13 @@ public class Charactor : MonoBehaviour
         Run,
     }
     //読みこんだspriteデータの格納先
-    List<Sprite> CharactorSprite;
+    protected List<Sprite> CharactorSprite;
     private SpriteRenderer _renderer = default;
 
     //生成したゲームオブジェクトの一時保存先
     List<GameObject> CreateObjArray = new List<GameObject>();
+
+    
 
     //初期化
     public void Init()
@@ -87,29 +89,7 @@ public class Charactor : MonoBehaviour
             SetObj.transform.parent = transform;
         }
     }
-    public void ChangeSprite(ChangeSpriteType spriteType)
-    {
-        //this.GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)spriteType];
-        _renderer.sprite = CharactorSprite[(int)spriteType];
-        /*
-        switch (spriteType)
-        {
-            case ChangeSpriteType.Wait:
-
-                
-
-                break;
-            case ChangeSpriteType.Wait2:
-                break;
-            case ChangeSpriteType.Banzai:
-                break;
-            case ChangeSpriteType.Run:
-                break;
-            default:
-                break;
-        }
-        */
-    }
     
+  
 
 }

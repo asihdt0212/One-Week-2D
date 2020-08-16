@@ -69,8 +69,12 @@ public class HomeCanvasUI : MonoBehaviour
             homeHumanText.text = counter.ToString();
             homeHumanText.transform.DOJump(homeHumanText.transform.position, textJumpForce, textJumpTime, countSpan, false);
 
-            if(humanCount != 0)
+            //画像変更処理
+            CharactorManager.Instance.ChangeCharacterSprite();
+
+            if (humanCount != 0)
             {
+                
                 //カウント中
                 SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT.key);
             }

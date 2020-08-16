@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,9 @@ public class CharactorManager : Singleton<CharactorManager>
     List<MovePattern> ListPattern = new List<MovePattern>();
     //人間データの格納先
     List<Charactor> ListCharactor = new List<Charactor>();
+    //家オブジェクト格納先
     public GameObject TargetObj;
+    public Vector3 TargetObjFirstPosi = new Vector3(0.0f, -2.12f,4.0f);
     //家データ
     private Home Home_;
     //キャラクターオブジェクトの格納先
@@ -24,8 +27,12 @@ public class CharactorManager : Singleton<CharactorManager>
     //ゲーム難易度の要素
     private SelectMode SelectMode_ = new SelectMode();
 
-    //
+    //答えオブジェクト
     protected GameObject AnwerCharaObj;
+
+    //画像変更させる時に使う
+    private int ChangeApriteNumber = 0;
+
     //Patternの作成パターン
     /*
     0　家にランダムで入る。
@@ -49,8 +56,12 @@ public class CharactorManager : Singleton<CharactorManager>
     //初期化
     public IEnumerator InitializeCharacterManager()
     {
+        //初期化
+        ChangeApriteNumber = 0;
+        //家を初期位置に戻す
+        TargetObj.transform.position = TargetObjFirstPosi;
         //生成済みのキャラクターオブジェクトなど全て消去
-        foreach(Transform _obj in this.transform)
+        foreach (Transform _obj in this.transform)
         {
             Destroy(_obj.gameObject);
         }
@@ -64,7 +75,7 @@ public class CharactorManager : Singleton<CharactorManager>
         ListCharaObj.Clear();
 
         CreatePatternType_.Clear();
-
+        
         //時間の初期化
         G_Time = 0;
         //家データの作成
@@ -86,7 +97,7 @@ public class CharactorManager : Singleton<CharactorManager>
 
         float L_Size = AnwerCharaObj.AddComponent<ResultCharacter>().G_LenthSize;
 
-        AnwerCharaObj.transform.position =  TargetObj.transform.position - new Vector3(2.0f, 2.0f, -2.0f);
+        AnwerCharaObj.transform.position =  TargetObj.transform.position - new Vector3(2.0f, 1.0f, -2.0f);
 
         //ランダムにCreatePatternType_に成分を入れる。
         for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
@@ -317,12 +328,11 @@ public class CharactorManager : Singleton<CharactorManager>
 
                         AnwerCharaObj.AddComponent<SpriteRenderer>();
 
-                        AnwerCharaObj.AddComponent<ResultCharacter>().Init();
+                        AnwerCharaObj.AddComponent<ResultCharacter>();
 
                         AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue, Home_.GetHumanValue());
 
-                        //例の呼び出し
-                        GameUI.instance.SetAnswerMode();
+                        GameEndSetAnswerMode();
 
                     }
                     //それ以外
@@ -330,15 +340,16 @@ public class CharactorManager : Singleton<CharactorManager>
                     {
                         //Debug.Log("NO" + i + " " + (ListPattern.Count - 1));
                     }
-
+                    //
+                    ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Wait);
                     break;
                 default:
                     break;
             }
 
-           
 
             
+
         }
         
             //Debug.Log(Home_.GetHumanValue());
@@ -375,5 +386,27 @@ public class CharactorManager : Singleton<CharactorManager>
 
         return TotalHumanValue;
     }
+    //家を移動させる。
+    public void TaretObjectDoMove(int num)
+    {
+        TargetObj.transform.DOMove(Vector3.up, 1.0f)
+            .OnComplete(() => GameManager.instance.CheckAnswer(num));
 
+    }
+    //解答モード呼び出し
+    private void GameEndSetAnswerMode()
+    {
+        //例の呼び出し
+        GameUI.instance.SetAnswerMode();
+    }
+    //画像を変える
+    
+    public void ChangeCharacterSprite()
+    {
+        //
+        Debug.Log("change！");
+        AnwerCharaObj.GetComponent<ResultCharacter>().ChangeSprite(Charactor.ChangeSpriteType.Banzai);
+       
+    }
+    
 }

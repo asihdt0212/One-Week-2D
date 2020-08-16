@@ -100,9 +100,10 @@ public class GameUI : MonoBehaviour
         {
             b.interactable = false;
         }
-
+        //家オブジェクトを動かす。
+        CharactorManager.Instance.TaretObjectDoMove(num);
         //答えチェック関数を呼び出す
-        GameManager.instance.CheckAnswer(num);
+        //GameManager.instance.CheckAnswer(num);
     }
 
     //クリア時○とか表示、一定時間経ったら次のラウンドへ
