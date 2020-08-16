@@ -151,6 +151,8 @@ public class GameManager : MonoBehaviour
 
             case State.RoundCall:
                 {
+                    //家の位置の初期化
+                    CharactorManager.Instance.HomeResetPosi();
                     //ラウンドコール
                     StartCoroutine(RoundCall());
                 }
