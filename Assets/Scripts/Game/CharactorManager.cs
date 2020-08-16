@@ -16,12 +16,16 @@ public class CharactorManager : Singleton<CharactorManager>
     private Home Home_;
     //キャラクターオブジェクトの格納先
     List<GameObject> ListCharaObj = new List<GameObject>();
+    //答え用キャラクターオブジェクト
+    private ResultCharacter ResultCharacter_ = new ResultCharacter();
     //ゲームの更新タイム
     private float G_Time = 0;
 
     //ゲーム難易度の要素
     private SelectMode SelectMode_ = new SelectMode();
 
+    //
+    private GameObject AnwerCharaObj;
     //Patternの作成パターン
     /*
     0　家にランダムで入る。
@@ -71,6 +75,20 @@ public class CharactorManager : Singleton<CharactorManager>
         //SelectMode_.SelectModeInit();
         //ゲームの難易度を10へ設定
         SelectMode_.SetGameLevel(10);
+
+        //答えのキャラ表示。
+        //家の中の答えMax人数分生成
+        AnwerCharaObj = new GameObject();
+
+        AnwerCharaObj.AddComponent<SpriteRenderer>();
+
+        AnwerCharaObj.AddComponent<ResultCharacter>().Init();
+
+        AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
+
+        float L_Size = AnwerCharaObj.AddComponent<ResultCharacter>().G_LenthSize;
+
+        AnwerCharaObj.transform.position =  TargetObj.transform.position - new Vector3(2.0f, 2.0f, -2.0f);
 
         //ランダムにCreatePatternType_に成分を入れる。
         for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
@@ -294,6 +312,9 @@ public class CharactorManager : Singleton<CharactorManager>
                     if (i == (ListPattern.Count - 1))
                     {
                         Debug.Log("Last OK");
+                        //答えんぽキャラオブジェクトのアクティブ状態をオンに
+                        AnwerCharaObj.AddComponent<ResultCharacter>().AnswerObjectActiveOn(Home_.GetHumanValue());
+                        //例の呼び出し
                         GameUI.instance.SetAnswerMode();
                     }
                     //それ以外

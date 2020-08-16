@@ -110,5 +110,6 @@ public class Charactor : MonoBehaviour
         }
         */
     }
+    
 
 }
