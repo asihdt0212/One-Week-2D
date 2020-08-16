@@ -89,7 +89,7 @@ public class MovePattern : Pattern
     private Angle PatternType_ = Angle.Up;
     private Vector3 MoveAngle_ = Vector3.zero;
     //ターゲットから離れている長さ
-    const float LengthValue = 10.0f;
+    const float LengthValue = 11.0f;
     //何番目か
     private int MyNumber = 0;
     public MovePattern(int Number,Transform Transform ,GameObject TargetObj,float SetMoveTime)
@@ -160,6 +160,8 @@ public class MovePattern : Pattern
             Mytransform.position = TargetObject.transform.position;
         }
         Mytransform.position = new Vector3(Mytransform.position.x, Mytransform.position.y, 0.0f);
+
+      
     }
 
     //ベースの座標から調整した座標を返す
@@ -259,6 +261,8 @@ public class MovePattern : Pattern
                 home.GainHuman(Human);
 
                 ActiveMove_ = ActiveMove.Move;
+
+                Move();
             }
         }
     }

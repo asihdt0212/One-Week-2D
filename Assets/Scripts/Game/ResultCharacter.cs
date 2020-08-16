@@ -6,10 +6,10 @@ public class ResultCharacter : Charactor
 {
     public int G_LenthSize = 0;
 
-    List<GameObject> L_ResultCharaObj = new List<GameObject>();
+    protected List<GameObject> L_ResultCharaObj = new List<GameObject>();
 
     //答えオブジェクトを生成(初期化段階で実行) 引数：家に入れる人間の最大数
-    public void CreateAnswerObject(int MaxhumanValue)
+    public void CreateAnswerObject(int MaxhumanValue,int ActiveValue)
     {
         //初期化
         L_ResultCharaObj.Clear();

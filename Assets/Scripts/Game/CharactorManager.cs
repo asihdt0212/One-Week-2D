@@ -25,7 +25,7 @@ public class CharactorManager : Singleton<CharactorManager>
     private SelectMode SelectMode_ = new SelectMode();
 
     //
-    private GameObject AnwerCharaObj;
+    protected GameObject AnwerCharaObj;
     //Patternの作成パターン
     /*
     0　家にランダムで入る。
@@ -74,17 +74,15 @@ public class CharactorManager : Singleton<CharactorManager>
         //ぐるぐるするなら、呼び出さないほうが良いかも?(上のnewで一応初期化は出来ていますが...)
         //SelectMode_.SelectModeInit();
         //ゲームの難易度を10へ設定
-        SelectMode_.SetGameLevel(10);
+        SelectMode_.SetGameLevel(UserDataManager.instance.GetUserData().currentRound);
 
         //答えのキャラ表示。
         //家の中の答えMax人数分生成
         AnwerCharaObj = new GameObject();
 
-        AnwerCharaObj.AddComponent<SpriteRenderer>();
+       
 
-        AnwerCharaObj.AddComponent<ResultCharacter>().Init();
-
-        AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
+        //AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
 
         float L_Size = AnwerCharaObj.AddComponent<ResultCharacter>().G_LenthSize;
 
@@ -273,6 +271,8 @@ public class CharactorManager : Singleton<CharactorManager>
                             {
                                 //
                                 ListPattern[i].SetAcitveMove(Pattern.ActiveMove.Move);
+                                //
+                                ListPattern[i].Move();
                             }
                             
                         }
@@ -283,7 +283,7 @@ public class CharactorManager : Singleton<CharactorManager>
                     break;
                 case Pattern.ActiveMove.Move:
                     //移動実行
-                    ListPattern[i].Move();
+                    //ListPattern[i].Move();
                     
                     break;
 
@@ -313,9 +313,17 @@ public class CharactorManager : Singleton<CharactorManager>
                     {
                         Debug.Log("Last OK");
                         //答えんぽキャラオブジェクトのアクティブ状態をオンに
-                        AnwerCharaObj.AddComponent<ResultCharacter>().AnswerObjectActiveOn(Home_.GetHumanValue());
+                        //AnwerCharaObj.AddComponent<ResultCharacter>().AnswerObjectActiveOn(Home_.GetHumanValue());
+
+                        AnwerCharaObj.AddComponent<SpriteRenderer>();
+
+                        AnwerCharaObj.AddComponent<ResultCharacter>().Init();
+
+                        AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue, Home_.GetHumanValue());
+
                         //例の呼び出し
                         GameUI.instance.SetAnswerMode();
+
                     }
                     //それ以外
                     else

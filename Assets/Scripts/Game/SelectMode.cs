@@ -17,9 +17,9 @@ public class SelectMode : MonoBehaviour
     //speedのデフォルト値
     const float DefaultApeedValue = 1.0f;
     //レベルが上がるごとに加算される、生成キャラ数の参照値
-    const float AddCharacterValue = 1.5f;
+    const float AddCharacterValue = 0.5f;
     //レベルが上がるごとにspeedが上がる参照値
-    const float AddSpeedValue = 0.1f;
+    const float AddSpeedValue = 0.25f;
    
     //基本全体のキャラクターの移動時間のデフォルト値
     //MoveTime（全体のキャラクターの移動時間）/　Sppedvalue = 移動にかかる時間で計算（全体のキャラの移動時間）を求める
