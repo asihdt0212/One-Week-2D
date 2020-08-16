@@ -2277,5 +2277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpritesOnScene
       objectReference: {fileID: 0}
+    - target: {fileID: 8205415360542439694, guid: 11b9c5dc3d52e0b4880ca2a2f0dbc2be,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b9c5dc3d52e0b4880ca2a2f0dbc2be, type: 3}
