@@ -145,7 +145,7 @@ public class MovePattern : Pattern
                 {
                     //入れ物に、仮の場所データを入れる
                     FirstPosi = M_Angle.Value;
-                    Debug.Log(M_Angle.Key+ "発見" + FirstPosi);
+                    //Debug.Log(M_Angle.Key+ "発見" + FirstPosi);
                 }
             }
 
@@ -173,7 +173,7 @@ public class MovePattern : Pattern
     //入る方向Left設定
     public void RondomHomeInInit()
     {
-        Debug.Log("ランダムIN生成");
+        //Debug.Log("ランダムIN生成");
         //乱数でLeftかUpを決める
         //float RandomValue = Random.Range(0f, 1f)*10;
         int RandomValue = Random.Range(0, 10);

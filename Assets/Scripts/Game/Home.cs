@@ -26,7 +26,7 @@ public class Home : MonoBehaviour
     //false　は減らせなかった。
     public bool GainHuman(int GainHumanValue)
     {
-        Debug.Log($"GainHuman{GainHumanValue}");
+        //Debug.Log($"GainHuman{GainHumanValue}");
         //減らした値が０未満はfalse;
         if ((TotalHuman - GainHumanValue) < 0)
         {

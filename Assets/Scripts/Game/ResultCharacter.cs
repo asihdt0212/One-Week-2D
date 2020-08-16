@@ -10,7 +10,7 @@ public class ResultCharacter : Charactor
 
     private int ChnageSpriteCount = 0;
     //答えオブジェクトを生成(初期化段階で実行) 引数：家に入れる人間の最大数
-    public void CreateAnswerObject(int MaxhumanValue,int ActiveValue)
+    public void CreateAnswerObject(int MaxhumanValue)
     {
         Init();
 
@@ -74,9 +74,17 @@ public class ResultCharacter : Charactor
             L_RCObj.SetActive(false);
         }
 
-        for(int i = 0; i < ActiveValue;i++)
+        
+    }
+    //アクティブ状態と画像のリセット。
+    public void CharaReset()
+    {
+        Debug.Log("Reset");
+        ChnageSpriteCount = 0;
+        foreach (var L_RCObj in L_ResultCharaObj)
         {
-            L_ResultCharaObj[i].SetActive(true);
+            L_RCObj.GetComponent<SpriteRenderer>().sprite = CharactorSprite[(int)ChangeSpriteType.Wait];
+            L_RCObj.gameObject.SetActive(false);
         }
     }
     //答えオブジェクトのアクティブ状態をオンにする //引数：答えオブジェクトのオンにするオブジェクト数
@@ -111,5 +119,9 @@ public class ResultCharacter : Charactor
 
         ChnageSpriteCount++;
 
+    }
+    public void ResetSprite()
+    {
+        
     }
 }

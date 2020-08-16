@@ -28,7 +28,7 @@ public class CharactorManager : Singleton<CharactorManager>
     private SelectMode SelectMode_ = new SelectMode();
 
     //答えオブジェクト
-    protected GameObject AnwerCharaObj;
+    protected GameObject AnwerCharaObj = null;
 
     //画像変更させる時に使う
     private int ChangeApriteNumber = 0;
@@ -89,15 +89,27 @@ public class CharactorManager : Singleton<CharactorManager>
 
         //答えのキャラ表示。
         //家の中の答えMax人数分生成
-        AnwerCharaObj = new GameObject();
+        if (AnwerCharaObj == null)
+        {
+            AnwerCharaObj = new GameObject();
 
-       
+            AnwerCharaObj.AddComponent<SpriteRenderer>();
 
-        //AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
+            AnwerCharaObj.AddComponent<ResultCharacter>();
 
+            AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
+
+            AnwerCharaObj.transform.position = TargetObj.transform.position - new Vector3(2.0f, 1.0f, -2.0f);
+
+            //AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue);
+        }
+        else
+        {
+            AnwerCharaObj.GetComponent<ResultCharacter>().CharaReset();
+        }
         float L_Size = AnwerCharaObj.AddComponent<ResultCharacter>().G_LenthSize;
 
-        AnwerCharaObj.transform.position =  TargetObj.transform.position - new Vector3(2.0f, 1.0f, -2.0f);
+        
 
         //ランダムにCreatePatternType_に成分を入れる。
         for (int i = 0; i < SelectMode_.GetCreateMaxHumanValue(); i++)
@@ -303,7 +315,7 @@ public class CharactorManager : Singleton<CharactorManager>
                     //出現から移動の終了時 false、
                     if (!ListPattern[i].m_MoveFlag)
                     {
-                        Debug.Log("AddHuman + " + ListPattern[i].Human);
+                        //Debug.Log("AddHuman + " + ListPattern[i].Human);
                         //人間の加算処理。
                         Home_.AddHuman(ListPattern[i].Human);
                         
@@ -326,11 +338,7 @@ public class CharactorManager : Singleton<CharactorManager>
                         //答えんぽキャラオブジェクトのアクティブ状態をオンに
                         //AnwerCharaObj.AddComponent<ResultCharacter>().AnswerObjectActiveOn(Home_.GetHumanValue());
 
-                        AnwerCharaObj.AddComponent<SpriteRenderer>();
-
-                        AnwerCharaObj.AddComponent<ResultCharacter>();
-
-                        AnwerCharaObj.GetComponent<ResultCharacter>().CreateAnswerObject(SelectMode_.MaxHumanValue, Home_.GetHumanValue());
+                        AnwerCharaObj.GetComponent<ResultCharacter>().AnswerObjectActiveOn(Home_.GetHumanValue());
 
                         GameEndSetAnswerMode();
 
