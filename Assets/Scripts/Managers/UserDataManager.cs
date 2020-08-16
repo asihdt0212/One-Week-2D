@@ -37,10 +37,7 @@ public class UserDataManager : MonoBehaviour
     {
          if(data.init == false)
         {
-            data = new UserData();
-            data.init = true;
-            //初期ラウンドを１と設定
-            data.currentRound = 1;
+            ResetData();
         }
     }
 
@@ -52,5 +49,14 @@ public class UserDataManager : MonoBehaviour
     public void NextRound()
     {
         data.currentRound++;
+    }
+
+    //初期化
+    public void ResetData()
+    {
+        data = new UserData();
+        data.init = true;
+        //初期ラウンドを１と設定
+        data.currentRound = 1;
     }
 }

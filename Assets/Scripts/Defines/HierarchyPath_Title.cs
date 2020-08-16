@@ -17,4 +17,8 @@
 	{
 		public const string Root = "EventSystem";
 	}
+	public struct TitleManager
+	{
+		public const string Root = "TitleManager";
+	}
 }
