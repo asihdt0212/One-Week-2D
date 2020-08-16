@@ -20,6 +20,8 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
+        //BGM
+        SoundManager.Instance.SoundBGMPlay(SoundDefine.BGM_GAME.key);
         //データ初期化
         UserDataManager.instance.ResetData();
     }

@@ -12,14 +12,19 @@ public class SoundData
     List<string> SoundKeyName;
     */
     //検索キー　と、Soundデータのリストデータ
-    Dictionary<string, AudioClip> SoundData_;
+    Dictionary<string, AudioClip> SoundData_ = new Dictionary<string, AudioClip>();
    
     
     //コンストラクタ
     public SoundData()
     {
         //リストデータの初期化
-        SoundData_ = new Dictionary<string, AudioClip>();
+        SoundData_.Clear();
+    }
+    public void Init()
+    {
+        //リストデータの初期化
+        SoundData_.Clear();
     }
 
     //Soundのロード。引数は読みこみたいデータのファイルパス。呼び出すときのキーの名前

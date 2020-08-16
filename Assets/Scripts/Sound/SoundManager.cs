@@ -5,12 +5,13 @@ using static SoundDefine;
 
 public class  SoundManager : Singleton<SoundManager>
 {
-    
+    [SerializeField]
     AudioSource MyBGMAudioSource;
+    [SerializeField]
     AudioSource MySEAudioSource;
     //音楽データ作成用
-    SoundData SoundSEData_;
-    SoundData SoundBGMData_;
+    SoundData SoundSEData_ = new SoundData();
+    SoundData SoundBGMData_ = new SoundData();
 
     public enum Kind
     {
@@ -22,18 +23,20 @@ public class  SoundManager : Singleton<SoundManager>
     void Start()
     {
         //初期化
-        SoundSEData_ = new SoundData();
-        SoundBGMData_ = new SoundData();
+        SoundSEData_.Init();
+        SoundBGMData_.Init();
 
         //オーディオソースを追加;
-        MyBGMAudioSource = this.gameObject.AddComponent<AudioSource>();
-        MySEAudioSource = this.gameObject.AddComponent<AudioSource>();
+        //MyBGMAudioSource = this.gameObject.AddComponent<AudioSource>();
+        //MySEAudioSource = this.gameObject.AddComponent<AudioSource>();
 
         //Loop設定
         MyBGMAudioSource.loop = true;
 
         //Soundのロード
         LoadSoundResource();
+
+        Play();
 
     }
 
