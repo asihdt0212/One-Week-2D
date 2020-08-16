@@ -74,8 +74,10 @@ public class HomeCanvasUI : MonoBehaviour
 
             if (humanCount != 0)
             {
-                
+
                 //カウント中
+                //SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT.key);
+
                 SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT.key);
             }
             else

@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         InitializeGame();
 
         //BGM
-        SoundManager.Instance.SoundBGMPlay(SoundDefine.BGM_GAME.key);
+        SoundManager.Instance.SoundBGMPlay(1);
     }
 
     //初期化処理

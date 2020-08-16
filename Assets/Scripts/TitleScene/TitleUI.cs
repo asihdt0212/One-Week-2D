@@ -39,6 +39,7 @@ public class TitleUI : MonoBehaviour
     {
         loadingPanel.SetActive(true);
 
+        SoundManager.Instance.SoundSEPlay(5);
 
         yield return new WaitForSeconds(loadingSpan);
 

@@ -9,6 +9,12 @@ public class  SoundManager : Singleton<SoundManager>
     AudioSource MyBGMAudioSource;
     [SerializeField]
     AudioSource MySEAudioSource;
+
+    [SerializeField]
+    AudioClip[] MyBGMData_;
+    [SerializeField]
+    AudioClip[] MySEData_;
+
     //音楽データ作成用
     SoundData SoundSEData_ = new SoundData();
     SoundData SoundBGMData_ = new SoundData();
@@ -73,37 +79,49 @@ public class  SoundManager : Singleton<SoundManager>
         if(kind == Kind.BGM) { SoundBGMData_.LoadSoundData(info.path, info.key); }
         else { SoundSEData_.LoadSoundData(info.path, info.key); }
     }
-    
+    public void SoundSEPlay(int number)
+    {
+        //ワンショットでならす
+        MySEAudioSource.PlayOneShot(MySEData_[number]);
+    }
+    public void SoundBGMPlay(int number)
+    {
+        MyBGMAudioSource.Stop();
+        //設定BGMの変更
+        MyBGMAudioSource.clip = MyBGMData_[number];
+        //BGMを流す
+        MyBGMAudioSource.Play();
+    }
     /// </書き足す所>
     /// 
     //SEを流す
     public void SoundSEPlay(string KeyName)
     {
-        var SoundData = SoundSEData_.GetSoundData(KeyName);
+        var SoundData_ = SoundSEData_.GetSoundData(KeyName);
 
-        if (SoundData == null)
+        if (SoundData_ == null)
         {
-            Debug.LogError(KeyName+"の中身が"+SoundData+"です。（SE）");
+            Debug.LogError(KeyName+"の中身が"+SoundData_+"です。（SE）");
             return;
         }
 
         //ワンショットでならす
-        MySEAudioSource.PlayOneShot(SoundData);
+        MySEAudioSource.PlayOneShot(SoundData_);
     }
     //BGMを流す
     public void SoundBGMPlay(string KeyName)
     {
         MyBGMAudioSource.Stop();
 
-        var SoundData = SoundBGMData_.GetSoundData(KeyName);
+        var SoundData_ = SoundBGMData_.GetSoundData(KeyName);
 
-        if(SoundData == null)
+        if(SoundData_ == null)
         {
-            Debug.LogError(KeyName + "の中身が" + SoundData + "です。（BGM）");
+            Debug.LogError(KeyName + "の中身が" + SoundData_ + "です。（BGM）");
             return;
         }
         //設定BGMの変更
-        MyBGMAudioSource.clip = SoundData;
+        MyBGMAudioSource.clip = SoundData_;
         //BGMを流す
         MyBGMAudioSource.Play();
     }

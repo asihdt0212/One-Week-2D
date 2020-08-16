@@ -47,6 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyBGMAudioSource: {fileID: 8168340472694908919}
   MySEAudioSource: {fileID: 5938101686162788150}
+  MyBGMData_:
+  - {fileID: 8300000, guid: 2d085306a0c620b4090a3ba677538c96, type: 3}
+  - {fileID: 8300000, guid: db10030aa678442e0bca8349c5abe595, type: 3}
+  MySEData_:
+  - {fileID: 8300000, guid: c6282135e9d6c4d2698403e9c3fd01be, type: 3}
+  - {fileID: 8300000, guid: d85f59600b493404cb8cad767a56e550, type: 3}
+  - {fileID: 8300000, guid: 3fc41629c86224bd98d0977c4a0530ba, type: 3}
+  - {fileID: 8300000, guid: a02ac73a4c0604340941e4648dd37146, type: 3}
+  - {fileID: 8300000, guid: 42e1d56aa7aae4fdf92edf14b571f18b, type: 3}
+  - {fileID: 8300000, guid: b3b487a81c5b14c0b8333410fac21e07, type: 3}
+  - {fileID: 8300000, guid: 1f6aacbe115d1454eac17cb106c3d490, type: 3}
 --- !u!82 &8168340472694908919
 AudioSource:
   m_ObjectHideFlags: 0

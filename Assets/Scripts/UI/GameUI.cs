@@ -130,7 +130,8 @@ public class GameUI : MonoBehaviour
     //ゲーム開始時Start表示
     public IEnumerator ShowStartLabel(float span)
     {
-        SoundManager.Instance.SoundSEPlay(SoundDefine.SE_START.key);
+        //SoundManager.Instance.SoundSEPlay(SoundDefine.SE_START.key);
+        SoundManager.Instance.SoundSEPlay(6);
         startLabel.SetActive(true);
         //SoundManager.Instance.SoundSEPlay(SoundDefine.SE_COUNT);
         yield return new WaitForSeconds(span);
