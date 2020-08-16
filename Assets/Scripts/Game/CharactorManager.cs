@@ -58,8 +58,7 @@ public class CharactorManager : Singleton<CharactorManager>
     {
         //初期化
         ChangeApriteNumber = 0;
-        //家を初期位置に戻す
-        TargetObj.transform.position = TargetObjFirstPosi;
+        
         //生成済みのキャラクターオブジェクトなど全て消去
         foreach (Transform _obj in this.transform)
         {
@@ -415,6 +414,12 @@ public class CharactorManager : Singleton<CharactorManager>
         Debug.Log("change！");
         AnwerCharaObj.GetComponent<ResultCharacter>().ChangeSprite(Charactor.ChangeSpriteType.Banzai);
        
+    }
+    //家の位置の初期化
+    public void HomeResetPosi()
+    {
+        //家を初期位置に戻す
+        TargetObj.transform.position = TargetObjFirstPosi;
     }
     
 }
