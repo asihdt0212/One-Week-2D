@@ -72,6 +72,11 @@ public class  SoundManager : Singleton<SoundManager>
         LoadSound(SE_INCORRECT, Kind.SE);
         //スタートSE
         LoadSound(SE_START, Kind.SE);
+        //歩行SEのロード
+        LoadSound(SE_Walk, Kind.SE);
+        //歩行SEのロード
+        LoadSound(SE_Walk2, Kind.SE);
+
     }
 
     void LoadSound(SoundInfo info, Kind kind)
@@ -166,6 +171,14 @@ public class  SoundManager : Singleton<SoundManager>
         float value_ = Mathf.Clamp(value, 0, 1);
         //ボリューム設定
         MySEAudioSource.volume = value_;
+    }
+    //再生速度の変更
+    public void ChangeSESoundSpeed(float PitchValue)
+    {
+        //範囲外にならないように
+        var P_Value = Mathf.Clamp(PitchValue, -3.0f, 3.0f);
+        //変更
+        MySEAudioSource.pitch = P_Value;
     }
     
 

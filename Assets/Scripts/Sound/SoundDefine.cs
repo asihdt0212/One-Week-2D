@@ -42,4 +42,10 @@ public static class SoundDefine
     //スタートSE
     public static readonly SoundInfo SE_START
         = new SoundInfo("SE_START", Define.Audio_SEStart);
+    //移動SE 軍隊系　(複数人)
+    public static readonly SoundInfo SE_Walk
+        = new SoundInfo("SE_Walk", Define.Audio_walkarmy1);
+    //移動SE 2 通常　（一人）
+    public static readonly SoundInfo SE_Walk2
+        = new SoundInfo("SE_Walk2", Define.Audio_walkingofagiant);
 }
