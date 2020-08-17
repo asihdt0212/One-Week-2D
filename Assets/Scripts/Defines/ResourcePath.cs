@@ -7,6 +7,7 @@ public static partial class Define
 		public readonly static string Prefab_CharactorManager = "Prefab/Game/CharactorManager";
 		public readonly static string Prefab_Home = "Prefab/Game/Home";
 		public readonly static string Prefab_SpritesOnScene = "Prefab/Game/SpritesOnScene";
+		public readonly static string Prefab_SoundPanel = "Prefab/UI/SoundPanel";
 		public readonly static string Prefab_GameUICanvas = "Prefab/UI/Canvas/GameUICanvas";
 		public readonly static string Prefab_HomeCanvas = "Prefab/UI/Canvas/HomeCanvas";
 		public readonly static string Prefab_RankingUICanvas = "Prefab/UI/Canvas/RankingUICanvas";
@@ -35,6 +36,7 @@ public static partial class Define
 		public readonly static string Audio_雑魚に構うなっ = "Sound/BGM/ReoMusic/雑魚に構うなっ";
 		public readonly static string Audio_雪国の大人たち1 = "Sound/BGM/ReoMusic/雪国の大人たち (1)";
 		public readonly static string Audio_雪国の大人たち = "Sound/BGM/ReoMusic/雪国の大人たち";
+		public readonly static string Audio_answer = "Sound/SE/answer";
 		public readonly static string Audio_SEClear = "Sound/SE/SE_Clear";
 		public readonly static string Audio_SECorrect = "Sound/SE/SE_Correct";
 		public readonly static string Audio_SEIncorrect = "Sound/SE/SE_Incorrect";

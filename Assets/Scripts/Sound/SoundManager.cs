@@ -78,7 +78,10 @@ public class  SoundManager : Singleton<SoundManager>
         LoadSound(SE_Walk2, Kind.SE);
         //歩行SEのロード
         LoadSound(SE_Walk3, Kind.SE);
-
+        //正解時歓声
+        LoadSound(SE_Clear, Kind.SE);
+        //解答時SE
+        LoadSound(SE_Answer, Kind.SE);
     }
 
     void LoadSound(SoundInfo info, Kind kind)

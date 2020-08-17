@@ -11,6 +11,9 @@ public class SoundPanelUI : MonoBehaviour
     [SerializeField, Header("SESlider")]
     private Slider seSlider;
 
+    //基礎ボリューム値を下げておく
+    float soundVolumeRate = .5f;
+
     public void ChangedValue(bool BGM)
     {
         var kind = (BGM == true) ? SoundManager.Kind.BGM : SoundManager.Kind.SE;
@@ -25,7 +28,7 @@ public class SoundPanelUI : MonoBehaviour
         }
         if (SoundManager.Instance != null) 
         {
-            SoundManager.Instance.ChangeVolume(kind, value);
+            SoundManager.Instance.ChangeVolume(kind, value * soundVolumeRate);
         };
     }
 }
