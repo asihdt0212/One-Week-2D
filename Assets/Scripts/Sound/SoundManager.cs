@@ -199,5 +199,11 @@ public class  SoundManager : Singleton<SoundManager>
     }
 
 
+    //音量設定
+    public void ChangeVolume(Kind kind, float volume)
+    {
+        if (kind == Kind.BGM) { MyBGMAudioSource.volume = volume; }
+        else  { MySEAudioSource.volume = volume; }
+    }
 
 }
