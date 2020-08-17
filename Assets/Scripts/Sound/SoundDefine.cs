@@ -51,4 +51,12 @@ public static class SoundDefine
     //移動SE 軍隊系(複数人) 短いバージョン
     public static readonly SoundInfo SE_Walk3
         = new SoundInfo("SE_Walk3", Define.Audio_walkarmy2);
+
+    //歓声
+    public static readonly SoundInfo SE_Clear
+        = new SoundInfo("SE_Clear", Define.Audio_SEClear);
+
+    //解答時SE
+    public static readonly SoundInfo SE_Answer
+        = new SoundInfo("SE_Answer", Define.Audio_answer);
 }

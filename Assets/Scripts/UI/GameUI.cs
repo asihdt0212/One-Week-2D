@@ -94,6 +94,7 @@ public class GameUI : MonoBehaviour
     {
         //解答
         Debug.Log($"Answer: {num}");
+        SoundManager.Instance.SoundSEPlay(SoundDefine.SE_Answer.key);
 
         //解答ボタン無効に
         foreach(var b in answerButtons)
@@ -110,6 +111,7 @@ public class GameUI : MonoBehaviour
     public IEnumerator RoundClear(System.Action callback)
     {
         SoundManager.Instance.SoundSEPlay(SoundDefine.SE_CORRECT.key);
+        SoundManager.Instance.SoundSEPlay(SoundDefine.SE_Clear.key);
         maruImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(showClearSpan);
         maruImage.gameObject.SetActive(false);
