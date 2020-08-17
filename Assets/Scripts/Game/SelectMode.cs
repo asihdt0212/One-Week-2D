@@ -10,20 +10,20 @@ public class SelectMode : MonoBehaviour
     //生成するキャラの数
     private int CreateMaxHumanValue = 0;
     //speed計算のに使う値
-    private float CharacterSppedValue = 1.0f;
+    private float CharacterSpeedValue = 1.0f;
 
     //生成するキャラのデフォルト値
     const int DefaultCharacterValue = 5;
     //speedのデフォルト値
-    const float DefaultApeedValue = 1.0f;
+    const float DefaultSpeedValue = 1.0f;
     //レベルが上がるごとに加算される、生成キャラ数の参照値
     const float AddCharacterValue = 0.5f;
     //レベルが上がるごとにspeedが上がる参照値
-    const float AddSpeedValue = 0.25f;
-   
+    public const float AddSpeedValue = 0.25f;
+
     //基本全体のキャラクターの移動時間のデフォルト値
     //MoveTime（全体のキャラクターの移動時間）/　Sppedvalue = 移動にかかる時間で計算（全体のキャラの移動時間）を求める
-    const float MoveTime= 5.0f;
+    public const float MoveTime= 5.0f;
 
     //難易度設定
     private int GameLevelValue = 1;
@@ -68,7 +68,7 @@ public class SelectMode : MonoBehaviour
         //キャラの生成数の更新
         CreateMaxHumanValue = DefaultCharacterValue + (int)(AddCharacterValue * GameLevelValue);
         //キャラクターの移動時間の更新
-        CharacterSppedValue = MoveTime / (DefaultApeedValue + (AddSpeedValue * GameLevelValue));
+        CharacterSpeedValue = MoveTime / (DefaultSpeedValue + (AddSpeedValue * GameLevelValue));
     }
     //生成キャラクター数の取得
     public int GetCreateMaxHumanValue()
@@ -78,6 +78,6 @@ public class SelectMode : MonoBehaviour
     //キャラクターの移動時間の取得
     public float GetCharacterSppedValue()
     {
-        return CharacterSppedValue;
+        return CharacterSpeedValue;
     }
 }

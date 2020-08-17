@@ -76,6 +76,8 @@ public class  SoundManager : Singleton<SoundManager>
         LoadSound(SE_Walk, Kind.SE);
         //歩行SEのロード
         LoadSound(SE_Walk2, Kind.SE);
+        //歩行SEのロード
+        LoadSound(SE_Walk3, Kind.SE);
 
     }
 
@@ -180,6 +182,22 @@ public class  SoundManager : Singleton<SoundManager>
         //変更
         MySEAudioSource.pitch = P_Value;
     }
-    
+    //再生速度の変更2 //移動時間のからピッチ速度を割り出す。
+    public void ChangeSESoundSpeed2(float MoveTime)
+    {
+        float P_Value = MoveTime / SelectMode.MoveTime;
+        //範囲外にならないように
+        
+        //変更
+        MySEAudioSource.pitch =0.80f + (1.0f -  P_Value);
+    }
+    //再生速度のリセット
+    public void SESoundSpeedReset()
+    {
+        const int ResetPitch = 1;
+        MySEAudioSource.pitch = ResetPitch;
+    }
+
+
 
 }

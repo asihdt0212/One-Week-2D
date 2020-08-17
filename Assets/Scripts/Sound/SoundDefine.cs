@@ -47,5 +47,8 @@ public static class SoundDefine
         = new SoundInfo("SE_Walk", Define.Audio_walkarmy1);
     //移動SE 2 通常　（一人）
     public static readonly SoundInfo SE_Walk2
-        = new SoundInfo("SE_Walk2", Define.Audio_walkingofagiant);
+        = new SoundInfo("SE_Walk2", Define.Audio_walkleathershoes1);
+    //移動SE 軍隊系(複数人) 短いバージョン
+    public static readonly SoundInfo SE_Walk3
+        = new SoundInfo("SE_Walk3", Define.Audio_walkarmy2);
 }

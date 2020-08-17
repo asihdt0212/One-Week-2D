@@ -403,6 +403,7 @@ public class CharactorManager : Singleton<CharactorManager>
     //解答モード呼び出し
     private void GameEndSetAnswerMode()
     {
+        SoundManager.Instance.SESoundSpeedReset();
         //例の呼び出し
         GameUI.instance.SetAnswerMode();
     }

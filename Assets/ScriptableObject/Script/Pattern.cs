@@ -269,10 +269,21 @@ public class MovePattern : Pattern
     //Pattern１
     public override void Move()
     {
-        
+        //
+        SoundManager.Instance.ChangeSESoundSpeed2(MoveTime);
+
         //入るほうの処理
         if (!m_MoveFlag)
         {
+            if(PatternType_ == Angle.Right)
+            {
+                SoundManager.Instance.SoundSEPlay(SoundDefine.SE_Walk3.key);
+            }
+            else
+            {
+
+            }
+            
             Mytransform.DOMove(endValue: new Vector3(TargetObject.transform.position.x, TargetObject.transform.position.y, Mytransform.position.z), duration: MoveTime)
                 .SetEase(Ease.Linear)
                 .OnComplete(() => End());
@@ -280,6 +291,16 @@ public class MovePattern : Pattern
         //出る方の処理
         else
         {
+
+            if (PatternType_ == Angle.Right)
+            {
+                SoundManager.Instance.SoundSEPlay(SoundDefine.SE_Walk3.key);
+            }
+            else
+            {
+
+            }
+            SoundManager.Instance.SoundSEPlay(SoundDefine.SE_Walk3.key);
             Mytransform.DOMove(endValue: new Vector3(Mytransform.position.x + (MoveAngle_.x * LengthValue), Mytransform.position.y + (MoveAngle_.y * LengthValue), Mytransform.position.z + (MoveAngle_.z * LengthValue)), duration: MoveTime)
                 .SetEase(Ease.Linear)
                 .OnComplete(() => End());
