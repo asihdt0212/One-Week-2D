@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SoundPanelUI : MonoBehaviour
 {
+    public static SoundPanelUI instance;
+
     [SerializeField, Header("BGMSlider")]
     private Slider bgmSlider;
 
@@ -13,6 +15,26 @@ public class SoundPanelUI : MonoBehaviour
 
     //基礎ボリューム値を下げておく
     float soundVolumeRate = .5f;
+
+    private void Awake()
+    {
+        if(instance == null) { instance = this; }
+        else { Destroy(this.gameObject); }
+    }
+
+    private void OnEnable()
+    {
+        bgmSlider.value = PlayerPrefs.GetFloat(SoundDefine.BGM_VOLUME, .5f);
+        seSlider.value = PlayerPrefs.GetFloat(SoundDefine.SE_VOLUME, .5f);
+        ChangedValue(true);
+        ChangedValue(false);
+    }
+
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat(SoundDefine.BGM_VOLUME, bgmSlider.value);
+        PlayerPrefs.SetFloat(SoundDefine.SE_VOLUME, seSlider.value);
+    }
 
     public void ChangedValue(bool BGM)
     {

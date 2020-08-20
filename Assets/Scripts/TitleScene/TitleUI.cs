@@ -41,6 +41,8 @@ public class TitleUI : MonoBehaviour
 
         SoundManager.Instance.SoundSEPlay(5);
 
+        //音量設定保存
+        SoundPanelUI.instance.SaveVolume();
         yield return new WaitForSeconds(loadingSpan);
 
         SceneManager.LoadScene("Game");

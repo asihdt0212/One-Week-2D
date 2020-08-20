@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class SoundDefine
 {
+    //音量保存キー
+    public static readonly string BGM_VOLUME = "BGM_VOLUME";
+    public static readonly string SE_VOLUME = "SE_VOLUME";
+
     public struct SoundInfo
     {
         public string key;

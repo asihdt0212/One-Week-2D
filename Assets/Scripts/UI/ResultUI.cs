@@ -62,6 +62,8 @@ public class ResultUI : MonoBehaviour
     //タイトルボタン
     private IEnumerator Title()
     {
+        //音量設定保存
+        SoundPanelUI.instance.SaveVolume();
         yield return null;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
