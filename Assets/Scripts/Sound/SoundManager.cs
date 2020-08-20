@@ -192,7 +192,7 @@ public class  SoundManager : Singleton<SoundManager>
         //範囲外にならないように
         
         //変更
-        MySEAudioSource.pitch =0.80f + (1.0f -  P_Value);
+        MySEAudioSource.pitch =0.70f + (1.0f -  P_Value);
     }
     //再生速度のリセット
     public void SESoundSpeedReset()
